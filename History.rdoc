@@ -1,4 +1,6 @@
-=== Version 0.0.2 / 2011-05-20
+=== Version 0.0.3 / 
+
+=== Version 0.0.2 / 2011-05-19
 * Bug fixes
   * migrations have one timestamp 
   * migration names does not match class names
