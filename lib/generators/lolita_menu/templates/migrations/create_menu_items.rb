@@ -1,6 +1,6 @@
-class CreateMenuItems < ActiveRecord::Migration
+class CreateLolitaMenuItems < ActiveRecord::Migration
   def self.up
-    create_table :menu_items do |t|
+    create_table :lolita_menu_items, :force=>true do |t|
       t.string  :name
       t.string  :url
       t.integer :menu_id
@@ -12,13 +12,13 @@ class CreateMenuItems < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :menu_items, :menu_id
-    add_index :menu_items, [:lft,:rgt,:menu_id,:parent_id]
-    add_index :menu_items, :lft # for sorting
-    add_index :menu_items, :rgt
-    add_index :menu_items, :depth
-    add_index :menu_items, :parent_id
-    add_index :menu_items, :is_visible
+    add_index :lolita_menu_items, :menu_id
+    add_index :lolita_menu_items, [:lft,:rgt,:menu_id,:parent_id]
+    add_index :lolita_menu_items, :lft # for sorting
+    add_index :lolita_menu_items, :rgt
+    add_index :lolita_menu_items, :depth
+    add_index :lolita_menu_items, :parent_id
+    add_index :lolita_menu_items, :is_visible
   end
 
   def self.down

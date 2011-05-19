@@ -1,14 +1,14 @@
-class CreateMenus < ActiveRecord::Migration
+class CreateLolitaMenus < ActiveRecord::Migration
   def self.up
-    create_table :menus do |t|
+    create_table :lolita_menus, :force=>true do |t|
       t.string  :name
       t.timestamps
     end
 
-    add_index :menus,:name
+    add_index :lolita_menus,:name
   end
 
   def self.down
-    drop_table :menus
+    drop_table :lolita_menus
   end
 end
