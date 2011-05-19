@@ -1,5 +1,5 @@
 = Lolita Menu
-Create, sort and publish menus from Lolita.
+Create, sort and publish menus with Lolita.
 
 ==Instalation
 In your project Gemfile put
