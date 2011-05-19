@@ -12,7 +12,7 @@ module LolitaMenu
 
       def copy_migration
         copy_file "migrations/create_menus.rb", "db/migrate/#{Time.now.strftime("%Y%m%d%H%M%S")}_create_lolita_menus.rb"
-        copy_file "migrations/create_menu_items.rb", "db/migrate/#{Time.now.strftime("%Y%m%d%H%M%S")}_create_lolita_menu_items.rb"
+        copy_file "migrations/create_menu_items.rb", "db/migrate/#{(Time.now+1).strftime("%Y%m%d%H%M%S")}_create_lolita_menu_items.rb"
       end
     end
   end
