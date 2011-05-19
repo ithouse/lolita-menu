@@ -1,5 +1,6 @@
 class Menu < ActiveRecord::Base
-
+  set_table_name "lolita_menus"
+  
   has_many :items, :class_name => "MenuItem", :dependent => :destroy
 
   validates :name, :presence => true

@@ -1,4 +1,6 @@
 class MenuItem < ActiveRecord::Base
+  set_table_name "lolita_menu_items"
+  
   attr_accessor :place
   
   belongs_to :menu, :class_name => "Menu"
