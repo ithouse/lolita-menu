@@ -1,0 +1,920 @@
+D, [2011-05-19T17:45:08.726667 #25420] DEBUG -- :   [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+D, [2011-05-19T17:45:08.726923 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+D, [2011-05-19T17:45:08.727561 #25420] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+D, [2011-05-19T17:45:08.727732 #25420] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+D, [2011-05-19T17:45:08.728002 #25420] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+D, [2011-05-19T17:45:08.728172 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+D, [2011-05-19T17:45:08.728576 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+D, [2011-05-19T17:45:08.729798 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+I, [2011-05-19T17:45:08.729893 #25420]  INFO -- : Migrating to CreateMenus (1)
+D, [2011-05-19T17:45:08.793776 #25420] DEBUG -- :   [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+D, [2011-05-19T17:45:08.794138 #25420] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+D, [2011-05-19T17:45:08.794448 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+D, [2011-05-19T17:45:08.795105 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+I, [2011-05-19T17:45:08.795234 #25420]  INFO -- : Migrating to CreateMenuItems (2)
+D, [2011-05-19T17:45:08.834093 #25420] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+D, [2011-05-19T17:45:08.834600 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:45:08.834912 #25420] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+D, [2011-05-19T17:45:08.835277 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:45:08.835435 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:45:08.835705 #25420] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+D, [2011-05-19T17:45:08.836010 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:45:08.836198 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:45:08.836349 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:45:08.836592 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+D, [2011-05-19T17:45:08.836911 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:45:08.837056 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+D, [2011-05-19T17:45:08.837248 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+D, [2011-05-19T17:45:08.837397 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+D, [2011-05-19T17:45:08.837648 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+D, [2011-05-19T17:45:08.838003 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:45:08.838160 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+D, [2011-05-19T17:45:08.838306 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+D, [2011-05-19T17:45:08.838550 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+D, [2011-05-19T17:45:08.838718 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+D, [2011-05-19T17:45:08.838984 #25420] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+D, [2011-05-19T17:45:08.839354 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:45:08.839503 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+D, [2011-05-19T17:45:08.839668 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+D, [2011-05-19T17:45:08.839850 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+D, [2011-05-19T17:45:08.840048 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:45:08.840197 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:45:08.840471 #25420] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+D, [2011-05-19T17:45:08.840865 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:45:08.841011 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+D, [2011-05-19T17:45:08.841158 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+D, [2011-05-19T17:45:08.841345 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+D, [2011-05-19T17:45:08.841515 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+D, [2011-05-19T17:45:08.841724 #25420] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:45:08.841898 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:45:08.842241 #25420] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+D, [2011-05-19T17:45:08.843025 #25420] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+D, [2011-05-19T17:46:09.088177 #25427] DEBUG -- :   [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+D, [2011-05-19T17:46:09.088453 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+D, [2011-05-19T17:46:09.089052 #25427] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+D, [2011-05-19T17:46:09.089222 #25427] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+D, [2011-05-19T17:46:09.089495 #25427] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+D, [2011-05-19T17:46:09.089663 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+D, [2011-05-19T17:46:09.090117 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+D, [2011-05-19T17:46:09.091382 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+I, [2011-05-19T17:46:09.091457 #25427]  INFO -- : Migrating to CreateMenus (1)
+D, [2011-05-19T17:46:09.153553 #25427] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+D, [2011-05-19T17:46:09.153908 #25427] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+D, [2011-05-19T17:46:09.154157 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+D, [2011-05-19T17:46:09.154832 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+I, [2011-05-19T17:46:09.154961 #25427]  INFO -- : Migrating to CreateMenuItems (2)
+D, [2011-05-19T17:46:09.193660 #25427] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+D, [2011-05-19T17:46:09.194018 #25427] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:46:09.194282 #25427] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+D, [2011-05-19T17:46:09.194687 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:46:09.194866 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:46:09.195146 #25427] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+D, [2011-05-19T17:46:09.195464 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:46:09.195655 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:46:09.195866 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:46:09.196129 #25427] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+D, [2011-05-19T17:46:09.196451 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:46:09.196596 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+D, [2011-05-19T17:46:09.196788 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+D, [2011-05-19T17:46:09.196935 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+D, [2011-05-19T17:46:09.197181 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+D, [2011-05-19T17:46:09.197518 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:46:09.197665 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+D, [2011-05-19T17:46:09.197811 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+D, [2011-05-19T17:46:09.197995 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+D, [2011-05-19T17:46:09.198140 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+D, [2011-05-19T17:46:09.198423 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+D, [2011-05-19T17:46:09.198832 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:46:09.198983 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+D, [2011-05-19T17:46:09.199131 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+D, [2011-05-19T17:46:09.199277 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+D, [2011-05-19T17:46:09.199459 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:46:09.199604 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:46:09.199918 #25427] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+D, [2011-05-19T17:46:09.200384 #25427] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:46:09.200579 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+D, [2011-05-19T17:46:09.200746 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+D, [2011-05-19T17:46:09.200903 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+D, [2011-05-19T17:46:09.201064 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+D, [2011-05-19T17:46:09.201266 #25427] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:46:09.201430 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:46:09.201745 #25427] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+D, [2011-05-19T17:46:09.202348 #25427] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+D, [2011-05-19T17:46:56.385326 #25434] DEBUG -- :   [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+D, [2011-05-19T17:46:56.385588 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+D, [2011-05-19T17:46:56.386185 #25434] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+D, [2011-05-19T17:46:56.386356 #25434] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+D, [2011-05-19T17:46:56.386697 #25434] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+D, [2011-05-19T17:46:56.386867 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+D, [2011-05-19T17:46:56.387270 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+D, [2011-05-19T17:46:56.388492 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+I, [2011-05-19T17:46:56.388567 #25434]  INFO -- : Migrating to CreateMenus (1)
+D, [2011-05-19T17:46:56.450322 #25434] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+D, [2011-05-19T17:46:56.450804 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menus")
+D, [2011-05-19T17:46:56.451084 #25434] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+D, [2011-05-19T17:46:56.451689 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+I, [2011-05-19T17:46:56.451814 #25434]  INFO -- : Migrating to CreateMenuItems (2)
+D, [2011-05-19T17:46:56.490629 #25434] DEBUG -- :   [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+D, [2011-05-19T17:46:56.491014 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:46:56.491288 #25434] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+D, [2011-05-19T17:46:56.491602 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:46:56.491760 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:46:56.492032 #25434] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+D, [2011-05-19T17:46:56.492388 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:46:56.492579 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:46:56.492731 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:46:56.492980 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+D, [2011-05-19T17:46:56.493302 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:46:56.493448 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+D, [2011-05-19T17:46:56.493640 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+D, [2011-05-19T17:46:56.493787 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+D, [2011-05-19T17:46:56.494056 #25434] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+D, [2011-05-19T17:46:56.494463 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:46:56.494650 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+D, [2011-05-19T17:46:56.494818 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+D, [2011-05-19T17:46:56.495008 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+D, [2011-05-19T17:46:56.495155 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+D, [2011-05-19T17:46:56.495415 #25434] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+D, [2011-05-19T17:46:56.495776 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:46:56.495921 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+D, [2011-05-19T17:46:56.496069 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+D, [2011-05-19T17:46:56.496215 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+D, [2011-05-19T17:46:56.496398 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:46:56.496545 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:46:56.496836 #25434] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+D, [2011-05-19T17:46:56.497205 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:46:56.497349 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+D, [2011-05-19T17:46:56.497495 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+D, [2011-05-19T17:46:56.497637 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+D, [2011-05-19T17:46:56.497781 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+D, [2011-05-19T17:46:56.497962 #25434] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:46:56.498122 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:46:56.498443 #25434] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+D, [2011-05-19T17:46:56.499056 #25434] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+D, [2011-05-19T17:48:22.396361 #25443] DEBUG -- :   [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+D, [2011-05-19T17:48:22.396614 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+D, [2011-05-19T17:48:22.397202 #25443] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+D, [2011-05-19T17:48:22.397375 #25443] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+D, [2011-05-19T17:48:22.397674 #25443] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+D, [2011-05-19T17:48:22.397841 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+D, [2011-05-19T17:48:22.398240 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+D, [2011-05-19T17:48:22.399431 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+I, [2011-05-19T17:48:22.399503 #25443]  INFO -- : Migrating to CreateMenus (1)
+D, [2011-05-19T17:48:22.463653 #25443] DEBUG -- :   [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+D, [2011-05-19T17:48:22.464202 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menus")
+D, [2011-05-19T17:48:22.464534 #25443] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+D, [2011-05-19T17:48:22.465300 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+I, [2011-05-19T17:48:22.465464 #25443]  INFO -- : Migrating to CreateMenuItems (2)
+D, [2011-05-19T17:48:22.504984 #25443] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+D, [2011-05-19T17:48:22.505351 #25443] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:48:22.505638 #25443] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+D, [2011-05-19T17:48:22.505964 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:48:22.506130 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:48:22.506463 #25443] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+D, [2011-05-19T17:48:22.506835 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:48:22.507038 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:48:22.507191 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:48:22.507461 #25443] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+D, [2011-05-19T17:48:22.507800 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:48:22.507942 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+D, [2011-05-19T17:48:22.508127 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+D, [2011-05-19T17:48:22.508269 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+D, [2011-05-19T17:48:22.508539 #25443] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+D, [2011-05-19T17:48:22.508910 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:48:22.509089 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+D, [2011-05-19T17:48:22.509261 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+D, [2011-05-19T17:48:22.509483 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+D, [2011-05-19T17:48:22.509659 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+D, [2011-05-19T17:48:22.510006 #25443] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+D, [2011-05-19T17:48:22.510552 #25443] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  PRAGMA index_list("menu_items")
+D, [2011-05-19T17:48:22.510744 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+D, [2011-05-19T17:48:22.510934 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+D, [2011-05-19T17:48:22.511116 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+D, [2011-05-19T17:48:22.511336 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:48:22.511514 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:48:22.511922 #25443] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+D, [2011-05-19T17:48:22.512443 #25443] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+D, [2011-05-19T17:48:22.512615 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+D, [2011-05-19T17:48:22.512786 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+D, [2011-05-19T17:48:22.512960 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+D, [2011-05-19T17:48:22.513134 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+D, [2011-05-19T17:48:22.513358 #25443] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+D, [2011-05-19T17:48:22.513533 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+D, [2011-05-19T17:48:22.513872 #25443] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+D, [2011-05-19T17:48:22.514556 #25443] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.2ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.2ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.2ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.2ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateMenus (1)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menus" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  PRAGMA index_list("menus")
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE INDEX "index_menus_on_name" ON "menus" ("name")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('1')
+Migrating to CreateMenuItems (2)
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE TABLE "menu_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "menu_id" integer, "lft" integer, "rgt" integer, "depth" integer, "parent_id" integer, "is_visible" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_menu_id" ON "menu_items" ("menu_id")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (5.9ms)[0m  CREATE INDEX "index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id" ON "menu_items" ("lft", "rgt", "menu_id", "parent_id")
+  [1m[36mSQL (0.2ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_lft" ON "menu_items" ("lft")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE INDEX "index_menu_items_on_rgt" ON "menu_items" ("rgt")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_rgt')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_menu_id')
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE INDEX "index_menu_items_on_depth" ON "menu_items" ("depth")[0m
+  [1m[35mSQL (0.2ms)[0m  PRAGMA index_list("menu_items")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.2ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_parent_id" ON "menu_items" ("parent_id")
+  [1m[36mSQL (0.2ms)[0m  [1mPRAGMA index_list("menu_items")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_depth')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_rgt')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_lft')[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_menu_items_on_lft_and_rgt_and_menu_id_and_parent_id')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_menu_items_on_menu_id')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE INDEX "index_menu_items_on_is_visible" ON "menu_items" ("is_visible")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('2')[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "menus";[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "menu_items";
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('item', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:15.960176', '2011-05-19 18:35:15.960176')
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('root', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.038721', '2011-05-19 18:35:16.038721')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('child', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.040449', '2011-05-19 18:35:16.040449')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET lft=2, rgt=3, depth=1, parent_id=2 WHERE (id=3)[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET rgt=4 WHERE (id=2)
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 3 LIMIT 1[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 2 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menus" ("name", "created_at", "updated_at") VALUES ('menu', '2011-05-19 18:35:16.055501', '2011-05-19 18:35:16.055501')
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 1) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "menus" WHERE "menus"."id" = 1 LIMIT 1
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('root', '/', 1, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.069853', '2011-05-19 18:35:16.069853')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('child', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.072325', '2011-05-19 18:35:16.072325')[0m
+  [1m[35mAREL (0.2ms)[0m  UPDATE "menu_items" SET "menu_id" = 1, "updated_at" = '2011-05-19 18:35:16.073587' WHERE "menu_items"."id" = 5
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 1) LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET lft=2, rgt=3, depth=1, parent_id=4 WHERE (id=5)
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET rgt=4 WHERE (id=4)[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 5 LIMIT 1
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 1) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "menu_items" WHERE (lft>1 AND rgt<4 AND depth=1 AND menu_id=1)
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE (lft>1 AND rgt<4 AND depth=1 AND menu_id=1) ORDER BY lft asc[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 1) LIMIT 1
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE (lft>1 AND rgt<4 AND depth=1 AND menu_id=1) ORDER BY lft asc LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menus" ("name", "created_at", "updated_at") VALUES ('menu', '2011-05-19 18:35:16.080357', '2011-05-19 18:35:16.080357')
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 2) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "menus" WHERE "menus"."id" = 2 LIMIT 1
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 2 LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('root', '/', 2, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.084085', '2011-05-19 18:35:16.084085')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('child', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.086508', '2011-05-19 18:35:16.086508')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET "menu_id" = 2, "updated_at" = '2011-05-19 18:35:16.087763' WHERE "menu_items"."id" = 7
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 2) LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET lft=2, rgt=3, depth=1, parent_id=6 WHERE (id=7)
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET rgt=4 WHERE (id=6)[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 7 LIMIT 1
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 7 LIMIT 1[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 6 LIMIT 1
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 2) LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menus" ("name", "created_at", "updated_at") VALUES ('menu', '2011-05-19 18:35:16.092831', '2011-05-19 18:35:16.092831')
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 3) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "menus" WHERE "menus"."id" = 3 LIMIT 1
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 3 LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('root', '/', 3, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.096198', '2011-05-19 18:35:16.096198')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('child', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.098634', '2011-05-19 18:35:16.098634')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET "menu_id" = 3, "updated_at" = '2011-05-19 18:35:16.099802' WHERE "menu_items"."id" = 9
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 3) LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET lft=2, rgt=3, depth=1, parent_id=8 WHERE (id=9)
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET rgt=4 WHERE (id=8)[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 9 LIMIT 1
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 9 LIMIT 1[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 3 AND "menu_items"."parent_id" IS NULL LIMIT 1
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 3) LIMIT 1[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 3) LIMIT 1
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 3) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "menus";[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "menu_items";
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "menus" ("name", "created_at", "updated_at") VALUES ('my menu', '2011-05-19 18:35:16.107135', '2011-05-19 18:35:16.107135')[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 4) LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "menus" WHERE "menus"."id" = 4 LIMIT 1[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 4 LIMIT 1
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('root', '/', 4, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.110463', '2011-05-19 18:35:16.110463')[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menus" ("name", "created_at", "updated_at") VALUES ('menu', '2011-05-19 18:35:16.116438', '2011-05-19 18:35:16.116438')
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "menus" WHERE "menus"."id" = 5 LIMIT 1
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 5 LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('root', '/', 5, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.120053', '2011-05-19 18:35:16.120053')
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('item-1', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.123133', '2011-05-19 18:35:16.123133')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET "menu_id" = 5, "updated_at" = '2011-05-19 18:35:16.124301' WHERE "menu_items"."id" = 12[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET lft=2, rgt=3, depth=1, parent_id=11 WHERE (id=12)[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET rgt=4 WHERE (id=11)
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 12 LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('item-2', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.127394', '2011-05-19 18:35:16.127394')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET "menu_id" = 5, "updated_at" = '2011-05-19 18:35:16.128656' WHERE "menu_items"."id" = 13[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1
+  [1m[36mAREL (0.2ms)[0m  [1mUPDATE "menu_items" SET lft=4, rgt=5, depth=1, parent_id=11 WHERE (id=13)[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET rgt=6 WHERE (id=11)
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 13 LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('item-3', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.132500', '2011-05-19 18:35:16.132500')
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET "menu_id" = 5, "updated_at" = '2011-05-19 18:35:16.133743' WHERE "menu_items"."id" = 14[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET lft=6, rgt=7, depth=1, parent_id=11 WHERE (id=14)[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET rgt=8 WHERE (id=11)
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 14 LIMIT 1[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET lft=1, rgt=8, depth=0, parent_id=NULL WHERE (id=11)[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET lft=2, rgt=7, depth=1, parent_id=11 WHERE (id=12)[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET lft=3, rgt=6, depth=2, parent_id=12 WHERE (id=13)
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET lft=4, rgt=5, depth=3, parent_id=13 WHERE (id=14)[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 5[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "menu_items" WHERE (lft>1 AND rgt<8 AND depth=1 AND menu_id=5)[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE (lft>1 AND rgt<8 AND depth=1 AND menu_id=5) ORDER BY lft asc
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE (lft>1 AND rgt<8 AND depth=1 AND menu_id=5) ORDER BY lft asc LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "menu_items" WHERE (lft>2 AND rgt<7 AND depth=2 AND menu_id=5)[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE (lft>2 AND rgt<7 AND depth=2 AND menu_id=5) ORDER BY lft asc
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 5) LIMIT 1[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE (lft>1 AND rgt<8 AND depth=1 AND menu_id=5) ORDER BY lft asc LIMIT 1
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE (lft>2 AND rgt<7 AND depth=2 AND menu_id=5) ORDER BY lft asc LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "menu_items" WHERE (lft>3 AND rgt<6 AND depth=3 AND menu_id=5)
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE (lft>3 AND rgt<6 AND depth=3 AND menu_id=5) ORDER BY lft asc[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menus" ("name", "created_at", "updated_at") VALUES ('new menu', '2011-05-19 18:35:16.148034', '2011-05-19 18:35:16.148034')
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 6) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "menus" WHERE "menus"."id" = 6 LIMIT 1
+  [1m[36mMenuItem Load (0.1ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 6 LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('root', '/', 6, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.151614', '2011-05-19 18:35:16.151614')
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 6) LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  INSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('item', '/', NULL, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.155488', '2011-05-19 18:35:16.155488')
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "menus" ("name", "created_at", "updated_at") VALUES ('new menu', '2011-05-19 18:35:16.157146', '2011-05-19 18:35:16.157146')[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 7) LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "menus" WHERE "menus"."id" = 7 LIMIT 1[0m
+  [1m[35mMenuItem Load (0.1ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."menu_id" = 7 LIMIT 1
+  [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "menu_items" ("name", "url", "menu_id", "lft", "rgt", "depth", "parent_id", "is_visible", "created_at", "updated_at") VALUES ('root', '/', 7, 1, 2, 0, NULL, NULL, '2011-05-19 18:35:16.160462', '2011-05-19 18:35:16.160462')[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET "menu_id" = 7, "updated_at" = '2011-05-19 18:35:16.162589' WHERE "menu_items"."id" = 16
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 7) LIMIT 1[0m
+  [1m[35mAREL (0.1ms)[0m  UPDATE "menu_items" SET lft=2, rgt=3, depth=1, parent_id=16 WHERE (id=16)
+  [1m[36mAREL (0.1ms)[0m  [1mUPDATE "menu_items" SET rgt=4 WHERE (id=16)[0m
+  [1m[35mMenuItem Load (0.2ms)[0m  SELECT "menu_items".* FROM "menu_items" WHERE "menu_items"."id" = 16 LIMIT 1
+  [1m[36mMenuItem Load (0.2ms)[0m  [1mSELECT "menu_items".* FROM "menu_items" WHERE ("menu_items".menu_id = 7)[0m

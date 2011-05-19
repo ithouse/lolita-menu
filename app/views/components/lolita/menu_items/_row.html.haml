@@ -1,0 +1,10 @@
+%li{:id=>"item-#{item.id}"}
+  %div{:class=>"menu-tree-content"}
+    %span
+      %input{:type=>"text",:value=>item.name,:name=>"name",:"data-id"=>item.id,:"data-url"=>menu_item_path(item.id)}
+    %span
+      %input{:type=>"text", :value=>item.url,:name=>"url",:class=>"url-input",:"data-id"=>item.id,:"data-url"=>menu_item_path(item.id)}
+    %span
+      = image_tag("move.png",:style=>"cursor:move;")
+  %ol
+    = render_component "lolita/menu_items", "subtree", :item => item

@@ -1,0 +1,11 @@
+%tbody
+  - page.each_with_index do |record,index| 
+    %tr{:class => "#{index % 2 == 0 ? "even" : "odd"} openable-row",:"data-id"=>record.id}
+      = render_component columns,:first,:record=>record
+      - columns.each do |column|
+        %td
+          = column.formatter.with(record.send(column.name.to_sym),record).to_s
+      = render_component columns,:last,:record=>record
+    %tr{:id=>"menu_items_#{record.id}",:class=>"subrow", :style=>"display:none;"}
+      %td{:colspan=>columns.size+2}
+        = render_component "lolita/menu_items",:display, :menu=>record

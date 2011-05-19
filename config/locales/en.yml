@@ -1,0 +1,5 @@
+en:
+  lolita:
+    menu: 
+      notice: "Menu saved."
+      error: "Couldn't save a menu. Try again."
