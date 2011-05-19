@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{lolita-menu}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ITHouse", "Arturs Meisters"]
@@ -54,8 +54,8 @@ Gem::Specification.new do |s|
     "test_orm/active_record.rb",
     "test_orm/boot.rb",
     "test_orm/config/active_record.yml",
-    "test_orm/db/migrate/01_create_menus.rb",
-    "test_orm/db/migrate/02_create_menu_items.rb",
+    "test_orm/db/migrate/01_create_lolita_menus.rb",
+    "test_orm/db/migrate/02_create_lolita_menu_items.rb",
     "test_orm/rails/config/application.rb",
     "test_orm/rails/config/enviroment.rb"
   ]
