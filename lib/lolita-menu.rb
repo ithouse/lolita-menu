@@ -1,5 +1,6 @@
 
 $:<<File.dirname(__FILE__) unless $:.include?(File.dirname(__FILE__))
+require 'haml'
 require 'lolita'
 
 module Lolita
