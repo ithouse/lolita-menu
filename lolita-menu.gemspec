@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{lolita-menu}
-  s.version = "0.0.6"
+  s.version = "0.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ITHouse", "Arturs Meisters"]
-  s.date = %q{2011-05-19}
+  s.date = %q{2011-06-09}
   s.description = %q{Manage public menus for each project inside Lolita.}
   s.email = %q{support@ithouse.lv}
   s.extra_rdoc_files = [
@@ -44,6 +44,8 @@ Gem::Specification.new do |s|
     "lib/lolita-menu/module.rb",
     "lib/lolita-menu/rails.rb",
     "lolita-menu.gemspec",
+    "public/images/lolita-menu/delete.png",
+    "public/images/lolita-menu/move.png",
     "public/javascripts/jquery-ui-nested-sortables.js",
     "public/javascripts/lolita/menu-items.js",
     "public/stylesheets/lolita/menu/style.css",
