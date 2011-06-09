@@ -5,6 +5,8 @@
     %span
       %input{:type=>"text", :value=>item.url,:name=>"url",:class=>"url-input",:"data-id"=>item.id,:"data-url"=>menu_item_path(item.id)}
     %span
-      = image_tag("move.png",:style=>"cursor:move;")
+      = image_tag("lolita-menu/move.png",:style=>"cursor:move;")
+    %span
+      = image_tag("lolita-menu/delete.png", :"data-url" => menu_item_path(item.id), :class => "delete-menu-item", :"data-row" => "#item-#{item.id}", :"data-menu" => "#menu_tree_#{menu.id}")
   %ol
-    = render_component "lolita/menu_items", "subtree", :item => item
+    = render_component "lolita/menu_items", "subtree", :item => item, :menu => menu

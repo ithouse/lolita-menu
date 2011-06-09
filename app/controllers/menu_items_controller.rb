@@ -6,9 +6,10 @@ class MenuItemsController < ActionController::Base
 
   def create
     menu=Menu.find_by_id(params[:menu_id])
-    item=MenuItem.create!(:name=>"new item",:url=>"/",:menu_id=>params[:menu_id])
+    item=MenuItem.create!(:name=>"new item",:url=>"/",:menu_id => params[:menu_id])
     menu.append(item)
-    render :partial=>"row", :locals=>{:item=>item}
+    response.headers["Lolita-Notice"] = I18n.t("lolita.menu.branch created")
+    render_component "lolita/menu_items", :row, :item => item, :menu => menu
   end
 
   def update
@@ -36,6 +37,7 @@ class MenuItemsController < ActionController::Base
   def destroy
     item=MenuItem.find_by_id(params[:id])
     item.destroy
+    response.headers["Lolita-Notice"] = I18n.t("lolita.menu.branch deleted")
     render :json=>{:id=>item.id}
   end
 end

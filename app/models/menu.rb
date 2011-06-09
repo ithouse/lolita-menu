@@ -12,7 +12,7 @@ class Menu < ActiveRecord::Base
   lolita do
     list do
       column :name
-      builder :name=>"lolita/menu",:state=>"list"
+      builder :name=>"/lolita/menu",:state=>"list", :if=>{:state=>:display}
     end
     tab(:content) do
       field :name

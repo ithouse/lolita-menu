@@ -3,3 +3,5 @@ en:
     menu: 
       notice: "Menu saved."
       error: "Couldn't save a menu. Try again."
+      "branch created": "New menu item created."
+      "branch deleted": "Menu item deleted."

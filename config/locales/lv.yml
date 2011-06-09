@@ -3,3 +3,5 @@ lv:
     menu:
       notice: "Izvēlne veiksmīgi saglabāta."
       error: "Izvēlni neizdevās saglabāt. Mēģiniet vēlreiz."
+      "branch created": "Jauns izvēlnes sadaļa izveidota."
+      "branch deleted": "Izvēlnes sadaļa dzēsta."

@@ -4,4 +4,4 @@
   = "Saglabāt izvēlni"
 %ol{:class=>"menu-items-tree", :id=>"menu_tree_#{menu.id}", :"data-url"=>update_tree_menu_items_path(:menu_id=>menu.id)}
   - menu.children.each do |item|
-    = render_component "lolita/menu_items", :row, :item=>item
+    = render_component "lolita/menu_items", :row, :item => item, :menu => menu

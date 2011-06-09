@@ -1,3 +1,12 @@
+=== Version 0.0.8 / 2011-06-09
+* Enhancements
+  * Delete functionality
+  
+=== Version 0.0.7 / 2011-05-20
+* Enhancements
+  * Notification after operations with menu items.
+  * Builder accept conditions
+  
 === Version 0.0.6 / 2011-05-19
 * Bug fixes
   * Can't recognize HAML files in projects without haml.

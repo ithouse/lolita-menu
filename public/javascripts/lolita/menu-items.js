@@ -57,6 +57,19 @@ $(document).ready(function(){
     })
   })
 
+  $(".delete-menu-item").click(function(){
+    var self = this;
+    $.ajax({
+      url:$(this).attr("data-url"),
+      type:"delete",
+      dataType: "json",
+      success:function(data){
+        $($(self).attr("data-row")).remove();
+        save_menu_tree($($(self).attr("data-menu")));
+      }
+    })
+  })
+
   $(".save_menu_tree").click(function(){
     save_menu_tree($(this).attr("data-id"))
   })
