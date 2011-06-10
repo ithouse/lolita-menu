@@ -35,7 +35,7 @@ class MenuItem < ActiveRecord::Base
     }
     
     !!active_item
-  endg
+  end
 
   def url_match?(request,fullpath=false)
     
