@@ -6,7 +6,7 @@ class MenuItem < ActiveRecord::Base
   belongs_to :menu, :class_name => "Menu"
 
   validates :name,:presence => true
-  validates :url, :format => {:with => /^\/.*/}, :unless=>:root?
+  validates :url, :format => {:with => /^(\/)|(http).*/}, :unless=>:root?
 
   before_create :set_default_positions
   after_create :put_in_place
@@ -28,6 +28,31 @@ class MenuItem < ActiveRecord::Base
     end
   end
   # instance methods
+
+  def active?(request,options={})
+    active_item = self_and_all_children.detect{|item|
+      item.url_match?(request,options[:fullpath])
+    }
+    
+    !!active_item
+  endg
+
+  def url_match?(request,fullpath=false)
+    
+    if self.url.match(/^http/)
+      self.url==request.url
+    else
+      only_path = (fullpath ? request.fullpath : request.path).gsub(/\?.*/,"")
+      self.real_url(request.params) == only_path
+    end
+  end
+
+  def real_url(params)
+    self.url.gsub(/(:\w+)\/?/) do |m|
+      params_key = $1.gsub(":","").to_sym
+      params.has_key?(params_key) ? "#{params[params_key]}#{m[m.size-1]=="/" ? "/" : ""}" : ""
+    end
+  end
 
   def visible?
     self.is_visible
@@ -51,6 +76,13 @@ class MenuItem < ActiveRecord::Base
       :left => self.lft,:right => self.rgt,:depth => self.depth+1, :menu=>self.menu_id 
     }).order("lft asc")
     @children
+  end
+
+  def self_and_all_children
+    @self_and_all_children||=self.class.where("lft>=:left AND rgt<=:right AND menu_id=:menu",{
+      :left => self.lft,:right => self.rgt, :menu=>self.menu_id 
+    }).order("lft asc")
+    @self_and_all_children
   end
 
   def root

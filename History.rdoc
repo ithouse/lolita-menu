@@ -1,3 +1,11 @@
+=== Version 0.0.9 / 2011-06-10
+* Enhancements
+  * Active item detection based on request
+  * Item urls with arguments
+
+* Bug fixes
+  * Delete works on newely added items
+  
 === Version 0.0.8 / 2011-06-09
 * Enhancements
   * Delete functionality

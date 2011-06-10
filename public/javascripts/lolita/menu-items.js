@@ -57,7 +57,7 @@ $(document).ready(function(){
     })
   })
 
-  $(".delete-menu-item").click(function(){
+  $(".delete-menu-item").live("click",function(){
     var self = this;
     $.ajax({
       url:$(this).attr("data-url"),

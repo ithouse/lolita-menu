@@ -44,6 +44,7 @@ class Menu < ActiveRecord::Base
     end
     self.root.append(item)
     item.reload
+    item
   end
 
   def have_root?
