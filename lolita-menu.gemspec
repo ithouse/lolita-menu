@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{lolita-menu}
-  s.version = "0.0.8"
+  s.version = "0.0.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ITHouse", "Arturs Meisters"]
-  s.date = %q{2011-06-09}
+  s.date = %q{2011-06-10}
   s.description = %q{Manage public menus for each project inside Lolita.}
   s.email = %q{support@ithouse.lv}
   s.extra_rdoc_files = [
@@ -64,7 +64,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/ithouse/lolita-menu}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.1}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Menu managing plugin for Lolita.}
   s.test_files = [
     "spec/controllers/menu_items_controller_spec.rb",
