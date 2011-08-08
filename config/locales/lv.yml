@@ -5,3 +5,5 @@ lv:
       error: "Izvēlni neizdevās saglabāt. Mēģiniet vēlreiz."
       "branch created": "Jauns izvēlnes sadaļa izveidota."
       "branch deleted": "Izvēlnes sadaļa dzēsta."
+      add_new: "Pievienot jaunu"
+      save_menu: "Saglabāt izvēlni"

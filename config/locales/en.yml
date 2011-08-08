@@ -5,3 +5,5 @@ en:
       error: "Couldn't save a menu. Try again."
       "branch created": "New menu item created."
       "branch deleted": "Menu item deleted."
+      add_new: "Add new"
+      save_menu: "Save menu"      
