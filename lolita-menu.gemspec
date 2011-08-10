@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{lolita-menu}
-  s.version = "0.0.10"
+  s.version = "0.0.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ITHouse", "Arturs Meisters"]
-  s.date = %q{2011-06-10}
+  s.date = %q{2011-08-10}
   s.description = %q{Manage public menus for each project inside Lolita.}
   s.email = %q{support@ithouse.lv}
   s.extra_rdoc_files = [
