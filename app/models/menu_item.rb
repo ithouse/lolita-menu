@@ -9,6 +9,7 @@ class MenuItem < ActiveRecord::Base
   validates :url, :format => {:with => /^(\/)|(http).*/}, :unless=>:root?
 
   before_create :set_default_positions
+  before_save :normalize_url
   after_create :put_in_place
   before_validation :set_default_values, :if=>:new_record?
 
@@ -30,7 +31,7 @@ class MenuItem < ActiveRecord::Base
   # instance methods
 
   def active?(request,options={})
-    active_item = self_and_all_children.detect{|item|
+    active_item = self_and_descendants.detect{|item|
       item.url_match?(request,options[:fullpath])
     }
     
@@ -38,9 +39,8 @@ class MenuItem < ActiveRecord::Base
   end
 
   def url_match?(request,fullpath=false)
-    
-    if self.url.match(/^http/)
-      self.url==request.url
+    if self.url.strip.match(/^http/)
+      self.url.strip==request.url
     else
       only_path = (fullpath ? request.fullpath : request.path).gsub(/\?.*/,"")
       self.real_url(request.params) == only_path
@@ -48,7 +48,7 @@ class MenuItem < ActiveRecord::Base
   end
 
   def real_url(params)
-    self.url.gsub(/(:\w+)\/?/) do |m|
+    self.url.strip.gsub(/(:\w+)\/?/) do |m|
       params_key = $1.gsub(":","").to_sym
       params.has_key?(params_key) ? "#{params[params_key]}#{m[m.size-1]=="/" ? "/" : ""}" : ""
     end
@@ -78,11 +78,11 @@ class MenuItem < ActiveRecord::Base
     @children
   end
 
-  def self_and_all_children
-    @self_and_all_children||=self.class.where("lft>=:left AND rgt<=:right AND menu_id=:menu",{
+  def self_and_descendants
+    @self_and_descendants||=self.class.where("lft>=:left AND rgt<=:right AND menu_id=:menu",{
       :left => self.lft,:right => self.rgt, :menu=>self.menu_id 
     }).order("lft asc")
-    @self_and_all_children
+    @self_and_descendants
   end
 
   def root
@@ -157,6 +157,10 @@ class MenuItem < ActiveRecord::Base
   def set_default_values
     self.name||="root"
     self.url||="/"
+  end
+
+  def normalize_url
+    self.url = self.url.to_s.strip
   end
 
 end
