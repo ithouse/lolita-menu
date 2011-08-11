@@ -1,7 +1,7 @@
 %button{:class => "add_new_menu_item",:"data-id" => menu.id,:"data-url" => menu_items_path(:menu_id=>menu.id)}
-  = "Pievienot jaunu"
+  = t("lolita.menu.add_new")
 %button{:class => "save_menu_tree", :"data-id" => "menu_tree_#{menu.id}"}
-  = "Saglabāt izvēlni"
+  = t("lolita.menu.save_menu")
 %ol{:class=>"menu-items-tree", :id=>"menu_tree_#{menu.id}", :"data-url"=>update_tree_menu_items_path(:menu_id=>menu.id)}
   - menu.children.each do |item|
     = render_component "lolita/menu_items", :row, :item => item, :menu => menu
