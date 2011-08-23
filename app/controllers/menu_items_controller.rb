@@ -3,6 +3,11 @@ class MenuItemsController < ActionController::Base
   include Lolita::Controllers::UserHelpers
 
   before_filter :authenticate_lolita_user!
+  
+  def autocomplete_menu_item_url
+    urls = Lolita::Menu::Autocomplete::Collector.new(params[:term])
+    render :json => urls.to_json
+  end
 
   def create
     menu=Menu.find_by_id(params[:menu_id])

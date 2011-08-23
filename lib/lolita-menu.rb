@@ -5,9 +5,29 @@ require 'lolita'
 
 module Lolita
   module Menu
+    module Autocomplete
+      autoload :LinkSet, "lolita-menu/autocomplete/link_set"
+      autoload :FileBuilder, "lolita-menu/autocomplete/file_builder"
+      autoload :Collector, "lolita-menu/autocomplete/collector"
 
+      def self.generate
+        require Lolita::Menu::Autocomplete::FileBuilder.input_file
+      end
+    end
+    # took this from sitemap_generator
+    Urls = (Class.new do
+      def method_missing(*args, &block)
+        (@link_set ||= reset!).send(*args, &block)
+      end
+
+      # Use a new LinkSet instance
+      def reset!
+        @link_set = Autocomplete::LinkSet.new
+      end
+    end).new
   end
 end
 
+
 require 'lolita-menu/module'
-require 'lolita-menu/rails'
+require 'lolita-menu/engine'

@@ -3,7 +3,12 @@
     %span
       %input{:type=>"text",:value=>item.name,:name=>"name",:"data-id"=>item.id,:"data-url"=>menu_item_path(item.id)}
     %span
-      %input{:type=>"text", :value=>item.url,:name=>"url",:class=>"url-input",:"data-id"=>item.id,:"data-url"=>menu_item_path(item.id)}
+      %input{:"data-autocomplete" => autocomplete_menu_item_url_menu_items_path, :"data-delimiter" => " ",
+             :id => "menu_item_#{item.id}_url", :name => "url",
+             :class=>"url-input ui-autocomplete-input", :autocomplete=>"off", :role=>"textbox", :"aria-autocomplete"=>"list",
+             :"aria-haspopup"=>"true", :type => "text", :value => item.url,
+             :"data-id"=>item.id,:"data-url"=>menu_item_path(item.id),
+            }
     %span
       = image_tag("lolita-menu/move.png",:style=>"cursor:move;")
     %span
