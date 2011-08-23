@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{lolita-menu}
-  s.version = "0.0.11"
+  s.version = "0.0.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["ITHouse", "Arturs Meisters"]
-  s.date = %q{2011-08-11}
+  s.authors = [%q{ITHouse}, %q{Arturs Meisters}]
+  s.date = %q{2011-08-23}
   s.description = %q{Manage public menus for each project inside Lolita.}
   s.email = %q{support@ithouse.lv}
   s.extra_rdoc_files = [
@@ -38,16 +38,38 @@ Gem::Specification.new do |s|
     "config/routes.rb",
     "lib/generators/lolita_menu/assets_generator.rb",
     "lib/generators/lolita_menu/install_generator.rb",
+    "lib/generators/lolita_menu/templates/lolita-menu-urls.rb",
     "lib/generators/lolita_menu/templates/migrations/create_menu_items.rb",
     "lib/generators/lolita_menu/templates/migrations/create_menus.rb",
     "lib/lolita-menu.rb",
+    "lib/lolita-menu/autocomplete/collector.rb",
+    "lib/lolita-menu/autocomplete/file_builder.rb",
+    "lib/lolita-menu/autocomplete/link_set.rb",
+    "lib/lolita-menu/engine.rb",
     "lib/lolita-menu/module.rb",
-    "lib/lolita-menu/rails.rb",
+    "lib/lolita-menu/railtie.rb",
+    "lib/tasks/lolita-menu.rake",
     "lolita-menu.gemspec",
     "public/images/lolita-menu/delete.png",
     "public/images/lolita-menu/move.png",
+    "public/javascripts/autocomplete-rails.js",
     "public/javascripts/jquery-ui-nested-sortables.js",
     "public/javascripts/lolita/menu-items.js",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_flat_0_aaaaaa_40x100.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_flat_0_eeeeee_40x100.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_flat_55_c0402a_40x100.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_flat_55_eeeeee_40x100.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_glass_100_f8f8f8_1x400.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_glass_35_dddddd_1x400.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_glass_60_eeeeee_1x400.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_inset-hard_75_999999_1x100.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-bg_inset-soft_50_c9c9c9_1x100.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-icons_3383bb_256x240.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-icons_454545_256x240.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-icons_70b2e1_256x240.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-icons_999999_256x240.png",
+    "public/stylesheets/jquery-ui/overcast/images/ui-icons_fbc856_256x240.png",
+    "public/stylesheets/jquery-ui/overcast/jquery-ui-1.8.16.custom.css",
     "public/stylesheets/lolita/menu/style.css",
     "spec/controllers/menu_items_controller_spec.rb",
     "spec/models/menu_item_spec.rb",
@@ -62,9 +84,9 @@ Gem::Specification.new do |s|
     "test_orm/rails/config/enviroment.rb"
   ]
   s.homepage = %q{http://github.com/ithouse/lolita-menu}
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.licenses = [%q{MIT}]
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.8}
   s.summary = %q{Menu managing plugin for Lolita.}
   s.test_files = [
     "spec/controllers/menu_items_controller_spec.rb",
