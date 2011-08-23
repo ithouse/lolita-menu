@@ -24,7 +24,7 @@ module Lolita
         def to_json
           result = []
           @links.each_with_index{|item, index|
-            result << {:id => index, :label => item.last, :value => item.first}
+            result << {:id => index, :label => "#{item.last} #{item[1] != item[0] ? "(#{item[0]})" : ""}", :value => item.first}
           }
           result
         end
