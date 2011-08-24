@@ -12,8 +12,9 @@ module Lolita
         def collect_from_file
           if File.exist?(Lolita::Menu::Autocomplete::FileBuilder.output_file)
             File.open(Lolita::Menu::Autocomplete::FileBuilder.output_file, "r").readlines.each{ |line|
-              item = line.to_s.split(" ")
-              item.last.to_s.gsub!("\n")
+              item = line.to_s.split(/\s/)
+              first_item = item.shift
+              item = [first_item, item.join(" ")]
               if item.first.match(/#{@term}/) || item.last.match(/#{@term}/)
                 @links << item
               end

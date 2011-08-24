@@ -1,4 +1,7 @@
-=== Version 0.0.13 / 2001-08-24
+=== Version 0.0.14 / 2011-08-24
+* Bug fixes
+  * reading form files fixed for autcomplete
+=== Version 0.0.13 / 2011-08-24
 * Bug fixes
   * Fixed rake task environment loading problem.
 === Version 0.0.12 / 2011-08-23
