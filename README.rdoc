@@ -22,7 +22,7 @@ To use autocomplete you need to add all possible url's in <b>config/lolita-menu-
     end
   end
 After that you can popuate all from file in result file by execucuting
-  rake lolita_menu:generate
+  rake lolita_menu:generate_urls
 If you want to add url when some of objects are created, then in your model add after_save or after_create callbacks and in related method add
   Lolita::Menu::Urls.add("/link", "Label"), unfortuneately it's impossible to use routes helper methods unless you do your own workaround.
 Enjoy!
