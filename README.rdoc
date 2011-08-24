@@ -11,7 +11,16 @@ Like with other Lolita gems call
 Since this gem comes with migrations
   rake db:migrate 
 === Using autocomplete
-To use autocomplete you need to add all possible url's in config/lolita-menu-urls.rb (follow instructions in file)
+Before that you must follow Install instruction.
+To use autocomplete you need to add all possible url's in <b>config/lolita-menu-urls.rb</b>
+====Example
+  # This will add contacts url and all possible URL's from Page model.
+  Lolita::Menu::Urls.create do 
+    add "/contacts", "Contacts"
+    Pages.each do |page|
+      add "/#{page.friendly_id}", page.title
+    end
+  end
 After that you can popuate all from file in result file by execucuting
   rake lolita_menu:generate
 If you want to add url when some of objects are created, then in your model add after_save or after_create callbacks and in related method add
