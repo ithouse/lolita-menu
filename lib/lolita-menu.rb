@@ -10,7 +10,7 @@ module Lolita
       autoload :FileBuilder, "lolita-menu/autocomplete/file_builder"
       autoload :Collector, "lolita-menu/autocomplete/collector"
 
-      def self.generate
+      def self.generate_urls
         require Lolita::Menu::Autocomplete::FileBuilder.input_file
       end
     end
@@ -31,3 +31,4 @@ end
 
 require 'lolita-menu/module'
 require 'lolita-menu/engine'
+#require 'lolita-menu/railtie'
