@@ -1,3 +1,7 @@
+=== Version 0.0.15 / 2011-08-24
+* Bug fixes
+  * require problem in generate_urls fixed
+  
 === Version 0.0.14 / 2011-08-24
 * Bug fixes
   * reading form files fixed for autcomplete

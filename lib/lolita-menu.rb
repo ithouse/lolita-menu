@@ -11,7 +11,8 @@ module Lolita
       autoload :Collector, "lolita-menu/autocomplete/collector"
 
       def self.generate_urls
-        require Lolita::Menu::Autocomplete::FileBuilder.input_file
+        file = Lolita::Menu::Autocomplete::FileBuilder.input_file
+        instance_eval(File.read(file),file)
       end
     end
     # took this from sitemap_generator
