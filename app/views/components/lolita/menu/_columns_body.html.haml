@@ -1,7 +1,6 @@
 %tbody
   - page.each_with_index do |record,index| 
     %tr{:class => "#{index % 2 == 0 ? "even" : "odd"} openable-row",:"data-id"=>record.id}
-      = render_component columns,:first,:record=>record
       - columns.each do |column|
         %td
           = column.formatter.with(record.send(column.name.to_sym),record).to_s

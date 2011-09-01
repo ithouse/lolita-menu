@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'lolita','~>3.1.6'
+gem 'lolita','~>3.1.17'
 gem 'haml', :require=>true
 
 group :development, :test do
