@@ -1,6 +1,7 @@
 # encoding: utf-8
 class MenuItemsController < ActionController::Base
   include Lolita::Controllers::UserHelpers
+  include Lolita::Controllers::InternalHelpers
 
   before_filter :authenticate_lolita_user!
   
@@ -13,7 +14,7 @@ class MenuItemsController < ActionController::Base
     menu=Menu.find_by_id(params[:menu_id])
     item=MenuItem.create!(:name=>"new item",:url=>"/",:menu_id => params[:menu_id])
     menu.append(item)
-    response.headers["Lolita-Notice"] = I18n.t("lolita.menu.branch created")
+    notice(I18n.t("lolita.menu.branch created"))
     render_component "lolita/menu_items", :row, :item => item, :menu => menu
   end
 
@@ -31,9 +32,9 @@ class MenuItemsController < ActionController::Base
     menu=Menu.find_by_id(params[:menu_id])
 
     if menu && menu.update_whole_tree(params[:items])
-      response.headers["Lolita-Notice"] = I18n.t("lolita.menu.notice")
+      notice I18n.t("lolita.menu.notice")
     else
-      response.headers["Lolita-Error"] = I18n.t("lolita.menu.error")
+      error I18n.t("lolita.menu.error")
     end
 
     render :nothing=>true
@@ -42,7 +43,11 @@ class MenuItemsController < ActionController::Base
   def destroy
     item=MenuItem.find_by_id(params[:id])
     item.destroy
-    response.headers["Lolita-Notice"] = I18n.t("lolita.menu.branch deleted")
+    notice I18n.t("lolita.menu.branch deleted")
     render :json=>{:id=>item.id}
   end
+
+  def is_lolita_resource?
+    true
+  end 
 end
