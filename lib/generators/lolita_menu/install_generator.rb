@@ -6,7 +6,7 @@ module LolitaMenu
       include Rails::Generators::Migration
 
       source_root File.expand_path("../templates", __FILE__)
-      desc "Copy assets and create migrations. "
+      desc "Create migrations. "
 
       def self.next_migration_number(dirname)
        if ActiveRecord::Base.timestamped_migrations
@@ -15,10 +15,6 @@ module LolitaMenu
          "%.3d" % (current_migration_number(dirname) + 1)
        end
      end
-
-      def copy_assets
-        generate("lolita_menu:assets")
-      end
 
       def create_menu_migrations
         begin
