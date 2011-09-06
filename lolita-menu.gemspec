@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "lolita-menu"
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ITHouse", "Arturs Meisters"]
@@ -24,27 +24,27 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "app/assets/images/lolita-menu/delete.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_flat_0_aaaaaa_40x100.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_flat_0_eeeeee_40x100.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_flat_55_c0402a_40x100.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_flat_55_eeeeee_40x100.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_glass_100_f8f8f8_1x400.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_glass_35_dddddd_1x400.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_glass_60_eeeeee_1x400.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_inset-hard_75_999999_1x100.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_inset-soft_50_c9c9c9_1x100.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_3383bb_256x240.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_454545_256x240.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_70b2e1_256x240.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_999999_256x240.png",
-    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_fbc856_256x240.png",
-    "app/assets/images/lolita-menu/move.png",
+    "app/assets/images/lolita/menu/delete.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_flat_0_aaaaaa_40x100.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_flat_0_eeeeee_40x100.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_flat_55_c0402a_40x100.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_flat_55_eeeeee_40x100.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_glass_100_f8f8f8_1x400.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_glass_35_dddddd_1x400.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_glass_60_eeeeee_1x400.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_inset-hard_75_999999_1x100.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-bg_inset-soft_50_c9c9c9_1x100.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-icons_3383bb_256x240.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-icons_454545_256x240.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-icons_70b2e1_256x240.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-icons_999999_256x240.png",
+    "app/assets/images/lolita/menu/jquery-ui/overcast/images/ui-icons_fbc856_256x240.png",
+    "app/assets/images/lolita/menu/move.png",
     "app/assets/javascripts/lolita/menu/application.js",
     "app/assets/javascripts/lolita/menu/autocomplete-rails.js",
     "app/assets/javascripts/lolita/menu/jquery-ui-nested-sortables.js",
     "app/assets/javascripts/lolita/menu/menu-items.js",
-    "app/assets/stylesheets/jquery-ui/overcast/jquery-ui-1.8.16.custom.css.erb",
+    "app/assets/stylesheets/lolita/menu/jquery-ui/overcast/jquery-ui-1.8.16.custom.css.erb",
     "app/assets/stylesheets/lolita/menu/style.css",
     "app/controllers/menu_items_controller.rb",
     "app/models/menu.rb",
@@ -88,12 +88,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
   s.summary = "Menu managing plugin for Lolita."
-  s.test_files = [
-    "spec/controllers/menu_items_controller_spec.rb",
-    "spec/models/menu_item_spec.rb",
-    "spec/models/menu_spec.rb",
-    "spec/spec_helper.rb"
-  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -106,7 +100,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<haml-rails>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<lolita>, ["= 3.2.0.rc2"])
@@ -116,7 +110,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<haml-rails>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
@@ -127,7 +121,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<haml-rails>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+    s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
     s.add_dependency(%q<rcov>, [">= 0"])
   end
 end
