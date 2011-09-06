@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'lolita','~>3.2.0.rc1'
+gem 'lolita','3.2.0.rc2'
 
 group :development, :test do
   gem 'rspec', '~>2.6.0'
