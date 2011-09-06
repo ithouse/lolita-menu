@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "lolita-menu"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ITHouse", "Arturs Meisters"]
-  s.date = "2011-09-05"
+  s.date = "2011-09-06"
   s.description = "Manage public menus for each project inside Lolita."
   s.email = "support@ithouse.lv"
   s.extra_rdoc_files = [
@@ -25,25 +25,26 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "app/assets/images/lolita-menu/delete.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_flat_0_aaaaaa_40x100.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_flat_0_eeeeee_40x100.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_flat_55_c0402a_40x100.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_flat_55_eeeeee_40x100.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_glass_100_f8f8f8_1x400.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_glass_35_dddddd_1x400.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_glass_60_eeeeee_1x400.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_inset-hard_75_999999_1x100.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-bg_inset-soft_50_c9c9c9_1x100.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_3383bb_256x240.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_454545_256x240.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_70b2e1_256x240.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_999999_256x240.png",
+    "app/assets/images/lolita-menu/jquery-ui/overcast/images/ui-icons_fbc856_256x240.png",
     "app/assets/images/lolita-menu/move.png",
-    "app/assets/javascripts/autocomplete-rails.js",
-    "app/assets/javascripts/jquery-ui-nested-sortables.js",
-    "app/assets/javascripts/lolita/menu-items.js",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_flat_0_aaaaaa_40x100.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_flat_0_eeeeee_40x100.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_flat_55_c0402a_40x100.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_flat_55_eeeeee_40x100.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_glass_100_f8f8f8_1x400.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_glass_35_dddddd_1x400.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_glass_60_eeeeee_1x400.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_inset-hard_75_999999_1x100.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-bg_inset-soft_50_c9c9c9_1x100.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-icons_3383bb_256x240.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-icons_454545_256x240.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-icons_70b2e1_256x240.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-icons_999999_256x240.png",
-    "app/assets/stylesheets/jquery-ui/overcast/images/ui-icons_fbc856_256x240.png",
-    "app/assets/stylesheets/jquery-ui/overcast/jquery-ui-1.8.16.custom.css",
+    "app/assets/javascripts/lolita/menu/application.js",
+    "app/assets/javascripts/lolita/menu/autocomplete-rails.js",
+    "app/assets/javascripts/lolita/menu/jquery-ui-nested-sortables.js",
+    "app/assets/javascripts/lolita/menu/menu-items.js",
+    "app/assets/stylesheets/jquery-ui/overcast/jquery-ui-1.8.16.custom.css.erb",
     "app/assets/stylesheets/lolita/menu/style.css",
     "app/controllers/menu_items_controller.rb",
     "app/models/menu.rb",
