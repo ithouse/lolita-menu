@@ -1,8 +1,8 @@
 - content_for :script do
-  = javascript_include_tag "lolita/menu-items", "jquery-ui-nested-sortables", "autocomplete-rails.js"
+  = javascript_include_tag "lolita/menu/application.js"
 - content_for :style do
-  = stylesheet_link_tag "lolita/menu/style"
-  = stylesheet_link_tag 'jquery-ui/overcast/jquery-ui-1.8.16.custom'
+  = stylesheet_link_tag "lolita/menu/style.css"
+  = stylesheet_link_tag 'jquery-ui/overcast/jquery-ui-1.8.16.custom.css'
 .box
   = render_component list, :title
   = render_component list, :new_resource
