@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "lolita-menu"
-  s.version = "0.1.4"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ITHouse", "Arturs Meisters"]
-  s.date = "2011-09-09"
+  s.date = "2011-10-03"
   s.description = "Manage public menus for each project inside Lolita."
   s.email = "support@ithouse.lv"
   s.extra_rdoc_files = [
@@ -44,8 +44,8 @@ Gem::Specification.new do |s|
     "app/assets/javascripts/lolita/menu/autocomplete-rails.js",
     "app/assets/javascripts/lolita/menu/jquery-ui-nested-sortables.js",
     "app/assets/javascripts/lolita/menu/menu-items.js",
+    "app/assets/stylesheets/lolita/menu/application.css",
     "app/assets/stylesheets/lolita/menu/jquery-ui/overcast/jquery-ui-1.8.16.custom.css.erb",
-    "app/assets/stylesheets/lolita/menu/style.css",
     "app/controllers/menu_items_controller.rb",
     "app/models/menu.rb",
     "app/models/menu_item.rb",
