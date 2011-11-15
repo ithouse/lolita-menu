@@ -1,3 +1,7 @@
+=== Version 0.1.6
+* Changes
+  * new style generators and improved navigation
+  
 === Version 0.0.2; 0.1.3 / 2011-09-06
 * Bug fixes
   * Asset pipline improved and fixed
