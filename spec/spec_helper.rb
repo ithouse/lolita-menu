@@ -1,5 +1,5 @@
 require 'rubygems'
-require File.expand_path("test_orm/boot")
+require File.expand_path("test_orm/rails/config/application")
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

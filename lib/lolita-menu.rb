@@ -1,5 +1,5 @@
 
-$:<<File.dirname(__FILE__) unless $:.include?(File.dirname(__FILE__))
+$: << File.dirname(__FILE__) unless $:.include?(File.dirname(__FILE__))
 require 'haml'
 require 'lolita'
 
@@ -31,5 +31,6 @@ end
 
 
 require 'lolita-menu/module'
-require 'lolita-menu/engine'
+require 'lolita-menu/nested_tree'
+#require 'lolita-menu/rails'
 #require 'lolita-menu/railtie'
