@@ -5,8 +5,6 @@ class Menu < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  after_create :create_root, :unless=>:have_root?
-
   include Lolita::Configuration
 
   lolita do
@@ -19,49 +17,7 @@ class Menu < ActiveRecord::Base
     end
   end
 
-  POSITION_ATTRIBUTES = {:left => :lft,:right => :rgt,:depth => :depth,:parent_id => :parent_id}
-  ROOT = "root"
-  NONE = "none"
-
-  def position_attributes
-    POSITION_ATTRIBUTES
-  end
-
-  def root
-    if item=self.items.first
-      item.root
-    end
-  end
-
-  def children
-    self.root.children
-  end
-
-  def append(item)
-    unless item.menu_id == self.id
-      item.menu_id = self.id
-      item.save!
-    end
-    self.root.append(item)
-    item.reload
-    item
-  end
-
-  def have_root?
-    !!self.root
-  end
-
-  def update_whole_tree(items)
-    begin
-      self.class.transaction do
-        update_all_items(items)
-        true
-      end
-    end
-  end
-
   protected
-
 
   def update_all_items(items)
     items_ids=items_with_acumulated_ids(items) do |item|

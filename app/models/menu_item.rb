@@ -2,28 +2,24 @@ class MenuItem < ActiveRecord::Base
 	include Lolita::Menu::NestedTree
   set_table_name "lolita_menu_items"
   
-  attr_accessor :place
-  
   belongs_to :menu, :class_name => "Menu"
 
   validates :name,:presence => true
   validates :url, :format => {:with => /^(\/)|(http).*/}, :unless=>:root?
 
-  before_create :set_default_positions
   before_save :normalize_url
-  after_create :put_in_place
-  before_validation :set_default_values, :if=>:new_record?
+  before_validation :set_default_url, :if=>:new_record?
 
-	lolita_nested_tree :scope => "Menu"
+	lolita_nested_tree :scope => :menu
 
 	# class methods
 	
-  class << self
-    def create_root!(menu)
-      new_item = self.create!({:menu_id => menu.id}.merge(default_root_position))
-      menu.items << new_item
-    end
-  end
+  #class << self
+   # def create_root!(menu)
+   #   new_item = self.create!({:menu_id => menu.id}.merge(default_root_position))
+   #   menu.items << new_item
+   # end
+  #end
 	
   # instance methods
 
@@ -34,6 +30,10 @@ class MenuItem < ActiveRecord::Base
     
     !!active_item
   end
+
+	def visible?
+		self.is_visible
+	end
 
   def url_match?(request,fullpath=false)
     if self.url.strip.match(/^http/)
@@ -53,14 +53,7 @@ class MenuItem < ActiveRecord::Base
 
   private
 
-  def put_in_place
-    if place==:append
-      self.menu.root.append(self)
-    end
-  end
-
-  def set_default_values
-    self.name||="root"
+  def set_default_url
     self.url||="/"
   end
 
