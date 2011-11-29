@@ -57,21 +57,21 @@ describe MenuItem do
 
     it "should find children" do
       menu.append(item)
-      menu.root.children.should have(1).item
-      menu.root.children.first == item
+      menu.root(MenuItem).children.should have(1).item
+      menu.root(MenuItem).children.first == item
     end
 
     it "should find parent" do
       menu.append(item)
       item.reload
-      item.parent.should == menu.root
+      item.parent.should == menu.root(MenuItem)
     end
 
     it "should find root for any item" do
       menu.append(item)
       item.reload
-      item.root.should == menu.root
-      menu.root.root.should == menu.root
+      item.root.should == menu.root(MenuItem)
+      menu.root(MenuItem).root.should == menu.root(MenuItem)
     end
   end
 end

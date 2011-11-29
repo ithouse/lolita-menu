@@ -19,31 +19,35 @@ module Lolita
 						self.class.sees?(tree_class)
 					end
 
-					#def root
-					#	if branch = self.items.first
-					#		item.root
-					#	end
-					#end
+					def root(tree_class, scope_attributes = {})
+						tree_class.find_or_create_root(merge_scope_with_self(tree_class, scope_attributes))
+					end
 
-					#def children
-					#	self.root.children
-					#end
+					def children(*args)
+						self.root(*args).children
+					end
 
-					#def append(item)
-					#	unless item.menu_id == self.id
-					#		item.menu_id = self.id
-					#		item.save!
-					#	end
-					#	self.root.append(item)
-					#	item.reload
-					#	item
-					#end
+					def append(item, scope_attributes = {})
+						scope_attributes = merge_scope_with_self(item.class, scope_attributes)
+						scope_root = self.root(item.class, scope_attributes)
+						item.class.with_tree_scope(scope_attributes) do
+							scope_root.append(item)
+							item.reload
+						end
+						item
+					end
 
-					#def have_root?
-					#	!!self.root
-					#end
+					private
+
+					def merge_scope_with_self(tree_class, scope_attributes)
+						scope_attributes.merge(tree_key(tree_class) => self.id)
+					end
+
+					def tree_key(klass)
+						klass.lolita_nested_tree.scope_key_for(self.class)
+					end
+
 				end
-
 			end
 		end
 	end

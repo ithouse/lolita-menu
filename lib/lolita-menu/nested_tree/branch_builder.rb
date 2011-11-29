@@ -25,16 +25,30 @@ module Lolita
 					end
 				end
 
+				def attribute_value_pairs_hash
+					hash = {}
+					attribute_value_pairs.each do |pair|
+						next if pair[0] == :item_id
+						hash[pair[0]] = pair[1]
+					end
+					hash
+				end
+
 				private
 
 				def mapping
-					{
-						:left => :lft,
-						:right => :rgt,
-						:depth => :depth,
-						:parent_id => :parent_id,
-						:item_id => :item_id
-					}
+					unless @mapping
+						@mapping = {
+							:left => :lft,
+							:right => :rgt
+						}
+						class << @mapping
+							def [](key)
+								self.keys.include?(key) ? self.fetch(key) : key
+							end
+						end
+					end
+					@mapping
 				end
 
 				def convert(value)

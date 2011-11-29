@@ -25,4 +25,10 @@ describe "BranchBuilder" do
 		builder = builder_class.new(root, {:left => 1, :right => 4, :depth => 0, :parent_id => "none", :item_id => "root"})
 		builder.attribute_value_pairs.sort.should == [[:depth, 0], [:item_id, root.id], [:"lft", 1], [:"parent_id", nil], [:"rgt", 4]]
 	end
+
+	it "should return attribute value pairs hash" do
+		root = MenuItem.create_root!
+		builder = builder_class.new(root, {:left => 1, :right => 4, :depth => 0, :parent_id => "none", :item_id => "root"})
+		builder.attribute_value_pairs_hash.should == {:lft => 1, :rgt => 4, :depth => 0, :parent_id => nil}
+	end
 end

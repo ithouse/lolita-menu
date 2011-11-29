@@ -1,6 +1,7 @@
 require "lolita-menu/nested_tree/configuration"
 require "lolita-menu/nested_tree/scope"
 require "lolita-menu/nested_tree/branch_builder"
+require "lolita-menu/nested_tree/tree_builder"
 
 module Lolita
 	module Menu
@@ -18,9 +19,19 @@ module Lolita
 
 			module ClassMethods
 				def create_root!
-					item = self.create!(with_tree_scope.merge(default_root_position))
-					self.refresh_scopes(item)
-					item
+					self.create!(with_tree_scope.merge(default_root_position))
+				end
+
+				def find_or_create_root(attributes = {})
+					if root = self.with_tree_scope(attributes).root
+						root
+					else
+						root = nil
+						self.with_tree_scope(attributes) do
+							root = create_root!
+						end
+						root
+					end
 				end
 
 				def default_root_position
@@ -64,8 +75,16 @@ module Lolita
 					end
 				end
 
-				def refresh_scopes(item)
-					
+				def update_item(item)
+					self.where(:id => item.value_for(:item_id)).update_all(item.attribute_value_pairs_hash)					
+				end
+
+				def remove_items(ids)
+					self.where(:id => ids).delete_all
+				end
+
+				def all_tree_item_ids
+					self.all.map(&:id)
 				end
 			end
 
@@ -167,8 +186,9 @@ module Lolita
 				end
 
 				def append_item(item)
-					position=position_for_append
-					self.class.update_all(positions_to_update_string(position),"id=#{item.id}")
+					attributes = self.class.with_tree_scope.merge(position_for_append)
+					builder = Lolita::Menu::NestedTree::BranchBuilder.new(nil, attributes)
+					self.class.where(:id => item.id).update_all(builder.attribute_value_pairs_hash)
 				end
 
 				def recalculate_positions_after(action)
@@ -177,18 +197,10 @@ module Lolita
 					end
 				end
 
-				def positions_to_update_string(positions)
-					result=[]
-					positions.each do |field,value|
-						result<<"#{field}=#{value}"
-					end
-					result.join(", ")
-				end
-
 				def position_for_append
 					{
-						:lft => self.rgt,
-						:rgt => self.rgt+1,
+						:left => self.rgt,
+						:right => self.rgt+1,
 						:depth => self.depth+1,
 						:parent_id => self.id
 					}

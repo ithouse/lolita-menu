@@ -12,4 +12,5 @@ group :development, :test do
   gem "jeweler", "~> 1.6.0"
   gem "rcov", ">= 0"
 	gem "database_cleaner", "~>0.6.7"
+	gem "ruby-debug19"
 end

@@ -6,7 +6,7 @@ describe Menu do
 
     it "should save tree for menu when array given" do
       menu=Menu.create!(:name=>"menu")
-      root=menu.root
+      root=menu.root(MenuItem)
       items=[]
       1.upto(3) do |index|
         item=MenuItem.create!(:name=>"item-#{index}")
@@ -44,11 +44,11 @@ describe Menu do
         }
       }
       
-      menu.update_whole_tree(new_positions)
-      
-      menu.children.should have(1).item
-      menu.children.first.children.should have(1).item
-      menu.children.first.children.first.children.should have(1).item
+      MenuItem.update_whole_tree(new_positions, {:menu_id => menu.id})
+
+      menu.children(MenuItem).should have(1).item
+      menu.children(MenuItem).first.children.should have(1).item
+      menu.children(MenuItem).first.children.first.children.should have(1).item
     end
   end
 
@@ -67,10 +67,11 @@ describe Menu do
     let(:menu){Menu.create!(:name=>"new menu")}
 
     it "should create root item on create" do
-      menu.root.should_not be_nil
+      menu.root(MenuItem).should_not be_nil
     end
 
     it "should add new item to menu" do
+			debugger
       item=MenuItem.create!(:name=>"item",:url=>"/")
       menu.append(item)
       menu.items.should have(2).items

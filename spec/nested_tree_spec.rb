@@ -12,15 +12,19 @@ describe "Nested tree" do
 	end
 
 	describe "adding records" do
-		let(:root) { Category.create_root! }
+		let(:root) { Category.find_or_create_root }
 		
 		it "should be root" do
 			root.root?.should be_true
 		end
 
+		it "should find root" do
+			root = Category.create_root!
+			root.should == Category.root
+		end
+
 		it "add item to root" do
-			new_item = Category.create!
-			root.append(new_item)
+			root.append(Category.create!)
 			root.reload
 			root.children.size.should == 1
 		end
@@ -76,7 +80,7 @@ describe "Nested tree" do
 
 		it "should return foreign keys for scope" do
 			add_associations([:shop, :category])
-			complex.scope_keys.sort.should == ["category_id", "shop_id"]
+			complex.scope_keys.sort.should == [:"category_id", :"shop_id"]
 		end
 
 		it "should notify scope classes" do
@@ -89,8 +93,23 @@ describe "Nested tree" do
 	end
 
 	describe "scoping" do
+		before(:each) do
+			@item_1 = MenuItem.create!(:name => "Item1", :menu_id => 3)
+			@item_2 = MenuItem.create!(:name => "Item2", :menu_id => 2)
+		end
 
+		it "should return criteria based on record" do
+			MenuItem.with_tree_scope(@item_1).should have(1).item
+		end
+
+		it "should return criteria based on hash" do
+			MenuItem.with_tree_scope(:menu_id => 2).should have(1).item
+		end
+
+		it "should accept block" do
+			MenuItem.with_tree_scope(@item_1) do
+				where(with_tree_scope).count.should == 1
+			end
+		end
 	end
 end
-
-

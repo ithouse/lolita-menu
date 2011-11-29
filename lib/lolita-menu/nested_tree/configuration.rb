@@ -39,9 +39,21 @@ module Lolita
 					end
 				end
 
+				def scope_key_for(klass)
+					scope_reflections.detect do |reflection|
+						reflection.klass == klass
+					end.foreign_key.to_sym
+				end
+
 				def scope_classes
 					@scope.map do |scope|
 						@klass.reflect_on_association(scope.to_sym).klass
+					end
+				end
+
+				def scope_reflections
+					@scope.map do |scope|
+						@klass.reflect_on_association(scope.to_sym)
 					end
 				end
 
