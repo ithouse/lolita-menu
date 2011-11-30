@@ -8,7 +8,10 @@ module Lolita
 
 				def initialize(root, attributes)
 					@root = root
-					@attributes = attributes || {}
+					@attributes = {}
+					(attributes || {}).each do |key,value|
+						@attributes[key.to_sym] = value
+					end
 				end
 
 				def root?

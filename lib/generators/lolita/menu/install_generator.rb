@@ -9,13 +9,17 @@ module Lolita
         source_root File.expand_path("../templates", __FILE__)
         desc "Create migrations. "
 
+        @@migration_counts = 0
+
         def self.next_migration_number(dirname)
-         if ActiveRecord::Base.timestamped_migrations
-           Time.now.utc.strftime("%Y%m%d%H%M%S")
-         else
-           "%.3d" % (current_migration_number(dirname) + 1)
-         end
-       end
+          @@migration_counts +=1
+          if ActiveRecord::Base.timestamped_migrations
+            base_time = (Time.now.utc.strftime("%Y%m%d%H%M")+"00").to_i
+            base_time + @@migration_counts
+          else
+            "%.3d" % (current_migration_number(dirname) + @@migration_counts)
+          end
+       	end
 
         def create_menu_migrations
           begin

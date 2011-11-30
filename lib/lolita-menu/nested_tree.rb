@@ -11,10 +11,13 @@ module Lolita
 				base_class.class_eval do
 					include Lolita::Menu::NestedTree::InstanceMethods
 					attr_accessor :place
-					before_validation :set_default_name, :if => :new_record?
 					before_create :set_default_positions
 					after_create :put_in_place
 				end
+			end
+
+			def self.is_tree?(klass)
+				klass.respond_to?(:lolita_nested_tree) && klass.lolita_nested_tree
 			end
 
 			module ClassMethods
@@ -44,7 +47,7 @@ module Lolita
 				end
 
 				def root
-					where(with_tree_scope.merge(:parent_id=>nil)).first
+					where(with_tree_scope.merge(:parent_id=>nil)).where("lft IS NOT NULL").order("lft asc").first
 				end
 
 				def with_tree_scope(record_or_hash=nil, &block)
@@ -122,6 +125,7 @@ module Lolita
 				end
 
 				def append(item)
+					raise ArgumentError, "can't append itself" if self == item
 					append_item(item)
 					recalculate_positions_after(:append)
 				end
@@ -141,10 +145,6 @@ module Lolita
 					else
 						self.place=:append
 					end
-				end
-
-				def set_default_name
-					self.name ||= "root"
 				end
 
 				def am_i_new_root?

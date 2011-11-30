@@ -1,4 +1,5 @@
 class MenuItem < ActiveRecord::Base
+	include Lolita::Configuration
 	include Lolita::Menu::NestedTree
   set_table_name "lolita_menu_items"
   
@@ -11,6 +12,13 @@ class MenuItem < ActiveRecord::Base
   before_validation :set_default_url, :if=>:new_record?
 
 	lolita_nested_tree :scope => :menu
+
+	lolita do
+		tab(:default) do
+			field :menu
+			field :url
+		end
+	end
 
 	# class methods
 	

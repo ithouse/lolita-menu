@@ -15,7 +15,7 @@ $(document).ready(function(){
     }
   }
 
-  $("ol.menu-items-tree").nestedSortable({
+  $("ol.nested-tree-items-tree").nestedSortable({
     disableNesting: 'no-nest',
     forcePlaceholderSize: true,
     handle: 'div',
@@ -33,23 +33,23 @@ $(document).ready(function(){
     }
   })
 
-  $("ol.menu-items-tree").each(function(){
+  $("ol.nested-tree-items-tree").each(function(){
     $(this).data("old_positions",$(this).nestedSortable("serialize"))
   })
 
   $(".openable-row").click(function(event){
     var that=this
     $(".subrow").hide(0)
-    $("#menu_items_"+$(this).attr("data-id")).show(0);
+    $("#branch_"+$(this).attr("data-id")).show(0);
     
     //event.preventDefault();
   })
 
-  $(".add_new_menu_item").click(function(){
+  $(".add_new_nested_tree_item").click(function(){
     $.ajax({
       url:$(this).attr("data-url"),
       type:"post",
-      context: $("#menu_tree_"+$(this).attr("data-id")),
+      context: $("#nested_tree_"+$(this).attr("data-id")),
       dataType:"html",
       success:function(html_data){
         $(this).append(html_data)
@@ -57,7 +57,7 @@ $(document).ready(function(){
     })
   })
 
-  $(".delete-menu-item").live("click",function(){
+  $(".delete-nested-tree-item").live("click",function(){
     var self = this;
     $.ajax({
       url:$(this).attr("data-url"),
@@ -65,20 +65,16 @@ $(document).ready(function(){
       dataType: "json",
       success:function(data){
         $($(self).attr("data-row")).remove();
-        save_menu_tree($($(self).attr("data-menu")));
+        save_menu_tree($($(self).attr("data-scope")));
       }
     })
   })
 
-  $(".save_menu_tree").click(function(){
-    save_menu_tree($(this).attr("data-id"))
-  })
-
-  $(".menu-tree-content input").live("focus",function(){
+  $(".nested-tree-content input").live("focus",function(){
     $(this).data("value",$(this).val())
   })
 
-  $(".menu-tree-content input").live("blur",function(){
+  $(".nested-tree-content input").live("blur",function(){
     var input=$(this);
     if(input.data("value")!=input.val()){
       input.data("value",input.val())

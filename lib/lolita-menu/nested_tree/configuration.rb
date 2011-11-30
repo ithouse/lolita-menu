@@ -16,7 +16,7 @@ module Lolita
 				# * <tt>:scope</tt> - model name (as String)
 				#
 				def lolita_nested_tree(options = {})
-					@config ||= Lolita::Menu::NestedTree::Configuration.new(self, options)
+					@lolita_nested_tree ||= Lolita::Menu::NestedTree::Configuration.new(self, options)
 				end
 			end
 

@@ -32,5 +32,5 @@ end
 
 require 'lolita-menu/module'
 require 'lolita-menu/nested_tree'
-#require 'lolita-menu/rails'
+require 'lolita-menu/rails'
 #require 'lolita-menu/railtie'

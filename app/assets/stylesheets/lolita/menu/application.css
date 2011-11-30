@@ -1,11 +1,11 @@
 /*
 *=require_directory ./jquery-ui
 */
-ol.menu-items-tree li{
+ol.nested-tree-items-tree li{
   list-style:none;
   width:390px;
 }
-div.menu-tree-content{
+div.nested-tree-content{
   width:500px;
 }
 li.placeholder{

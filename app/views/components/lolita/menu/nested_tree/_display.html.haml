@@ -1,0 +1,16 @@
+- content_for :script do
+  = javascript_include_tag "lolita/menu/application.js"
+- content_for :style do
+  = stylesheet_link_tag "lolita/menu/application.css"
+
+- has_scopes = list.dbi.klass.lolita_nested_tree.scope_keys.any?
+.box
+  = render_component list, :title
+  = render_component list, :new_resource if has_scopes
+  .list
+    %table
+      - if has_scopes
+        = render_component "lolita/menu/nested_tree",:columns,:page=>page,:columns=>list.columns
+      - else
+        = render_component "lolita/menu/nested_tree", :unscoped_body
+  = render_component list, :paginator, :page => page

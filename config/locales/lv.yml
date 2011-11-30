@@ -7,3 +7,8 @@ lv:
       "branch deleted": "Izvēlnes sadaļa dzēsta."
       add_new: "Pievienot jaunu"
       save_menu: "Saglabāt izvēlni"
+    nested_tree:
+      "branch created": "Izveidots(-a) %{name}."
+      "branch deleted": "%{name} dzēsts(-a)."
+      notice: "%{name} veiksmīgi saglabāts(-a)."
+      error: "%{name} netika saglabāts(-a). Mēģiniet vēlreiz."
