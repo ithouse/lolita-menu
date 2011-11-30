@@ -47,7 +47,7 @@ module Lolita
 				end
 
 				def root
-					where(with_tree_scope.merge(:parent_id=>nil)).where("lft IS NOT NULL").order("lft asc").first
+					where(with_tree_scope.merge(:parent_id=>nil)).where("lft>0").order("lft asc").first
 				end
 
 				def with_tree_scope(record_or_hash=nil, &block)
@@ -149,7 +149,9 @@ module Lolita
 
 				def am_i_new_root?
 					#scope_ids.all? && scope_records.all? && 
-					first_record_within_scope?
+					!(self.class.with_tree_scope(self) do
+						root
+					end)
 				end
 
 				#def scope_ids
@@ -171,10 +173,6 @@ module Lolita
 							root.append(item)
 						end
 					end
-				end
-
-				def first_record_within_scope?
-					!self.class.with_tree_scope(self).first
 				end
 
 				def set_root_position
