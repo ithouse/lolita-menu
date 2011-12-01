@@ -105,15 +105,29 @@ module Lolita
 				end
 
 				def children
-					@children ||= self.class.where("lft>:left AND rgt<:right AND depth=:depth",{
-						:left => self.lft,:right => self.rgt,:depth => self.depth+1
-					}).with_tree_scope(self).order("lft asc")
+					@children ||= self.class.where(:parent_id => self.id).with_tree_scope(self).order("lft asc")
 				end
 
 				def self_and_descendants
 					@self_and_descendants ||= self.class.where("lft>=:left AND rgt<=:right",{
 						:left => self.lft,:right => self.rgt
 					}).with_tree_scope(self).order("lft asc")
+				end
+
+				def descendants
+					@descendants ||= self.class.where("lft>:left AND rgt<:right",{
+						:left => self.lft, :right => self.rgt
+					}).with_tree_scope(self).order("lft asc")
+				end
+
+				def ancestors
+					@ancestors ||= self.class.where("lft<:left AND rgt>:right",{
+						:left => self.lft, :right => self.rgt
+					}).with_tree_scope(self).order("lft asc")
+				end
+
+				def only_children
+					@only_children ||= self.class.where("rgt-lft=1").with_tree_scope(self).order("lft asc")
 				end
 
 				def root
