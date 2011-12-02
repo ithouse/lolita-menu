@@ -121,7 +121,7 @@ module Lolita
 				end
 
 				def ancestors
-					@ancestors ||= self.class.where("lft<:left AND rgt>:right AND parent_is IS NOT NULL",{
+					@ancestors ||= self.class.where("lft<:left AND rgt>:right AND parent_id IS NOT NULL",{
 						:left => self.lft, :right => self.rgt
 					}).with_tree_scope(self).order("lft asc")
 				end
