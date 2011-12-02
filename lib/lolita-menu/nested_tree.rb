@@ -134,7 +134,7 @@ module Lolita
 								[item] + results
 								current_parent_id = item.parent_id
 							else
-								result
+								results
 							end
 						}
 					end
