@@ -129,10 +129,10 @@ module Lolita
 				def parents
 					unless @parent
 						current_parent_id = self.parent_id
-						@parents = self.ancestors.inject([]){|results,item|
-							if item.parent_id && item.parent_id == current_parent_id
-								[item] + results
+						@parents = self.ancestors.reverse.inject([]){|results,item|
+							if item.parent_id && item.id == current_parent_id
 								current_parent_id = item.parent_id
+								[item] + results
 							else
 								results
 							end
