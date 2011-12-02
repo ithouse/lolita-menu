@@ -121,9 +121,24 @@ module Lolita
 				end
 
 				def ancestors
-					@ancestors ||= self.class.where("lft<:left AND rgt>:right",{
+					@ancestors ||= self.class.where("lft<:left AND rgt>:right AND parent_is IS NOT NULL",{
 						:left => self.lft, :right => self.rgt
 					}).with_tree_scope(self).order("lft asc")
+				end
+
+				def parents
+					unless @parent
+						current_parent_id = self.parent_id
+						@parents = self.ancestors.inject([]){|results,item|
+							if item.parent_id && item.parent_id == current_parent_id
+								[item] + results
+								current_parent_id = item.parent_id
+							else
+								result
+							end
+						}
+					end
+					@parents
 				end
 
 				def only_children
