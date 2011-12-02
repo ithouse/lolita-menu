@@ -78,6 +78,14 @@ module Lolita
 					end
 				end
 
+        def build_empty_branch(attributes)
+          if self.lolita_nested_tree.build_method && self.respond_to?(self.lolita_nested_tree.build_method)
+            self.send(self.lolita_nested_tree.build_method, attributes)
+          else
+            self.new(attributes)
+          end
+        end
+
 				def update_item(item)
 					self.where(:id => item.value_for(:item_id)).update_all(item.attribute_value_pairs_hash)					
 				end

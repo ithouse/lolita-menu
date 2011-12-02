@@ -1,5 +1,6 @@
 %li{:id=>"item-#{item.id}"}
   %div{:class=>"nested-tree-content"}
+    = render_component "lolita/menu/nested_tree/branch_builder", :fields, :item => item
     %span
       = image_tag("lolita/menu/move.png",:style=>"cursor:move;")
     %span

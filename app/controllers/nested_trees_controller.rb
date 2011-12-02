@@ -8,7 +8,8 @@ class NestedTreesController < ApplicationController
 	end
 
 	def create
-		item = tree_class.create!(attributes.merge(scopes))
+		item = tree_class.build_empty_branch(attributes.merge(scopes))
+    item.save!
 		item.reload
     notice(I18n.t("lolita.nested_tree.branch created", :name => tree_class.model_name.human))
 		render_component "lolita/menu/nested_tree/branch_builder", :row, :item => item, :scope => scope

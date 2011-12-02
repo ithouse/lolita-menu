@@ -5,6 +5,12 @@ ol.nested-tree-items-tree li{
 div.nested-tree-content{
   width:500px;
 }
+#main div.nested-tree-content form {
+  background: none;
+  float: left;
+  padding: 0;
+  margin-right: 10px;
+}
 li.placeholder{
   background-color:white;
 }

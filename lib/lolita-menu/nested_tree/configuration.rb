@@ -22,7 +22,7 @@ module Lolita
 
 			class Configuration
 
-				attr_reader :klass, :options, :scope
+				attr_reader :klass, :options, :scope, :build_method
 
 				def initialize(base_class, options = {})
 					@klass = base_class					

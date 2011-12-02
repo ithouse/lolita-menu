@@ -77,13 +77,14 @@ $(document).ready(function(){
   $(".nested-tree-content input").live("blur",function(){
     var input=$(this);
     if(input.data("value")!=input.val()){
+      var match = input.attr("name").match(/\[(\w+)\]$/);
       input.data("value",input.val())
       $.ajax({
-        url:input.attr("data-url"),
+        url: input.closest("form").attr("action"),
         type:"put",
         context:$(this),
         dataType:"json",
-        data:{attribute:input.attr("name"),value:input.val()},
+        data:{attribute: match[1], value: input.val()},
         success:function(data){
           var color=(data.status=="error" ? "#ff5656" : "#aaff56");
           $(this).css("backgroundColor",color);
