@@ -17,7 +17,7 @@ class NestedTreesController < ApplicationController
 	end
 
 	def update
-    autorize!(:update,tree_class)
+    authorize!(:update,tree_class)
 		if item = tree_class.find_by_id(params[:id])
       item.send(:"#{params[:attribute]}=",params[:value])
       item.save
@@ -39,7 +39,7 @@ class NestedTreesController < ApplicationController
 	end
 
 	def destroy
-    autorize!(:destroy,tree_class)
+    authorize!(:destroy,tree_class)
 		item = tree_class.find_by_id(params[:id])
 		item.destroy
     notice I18n.t("lolita.nested_tree.branch deleted", :name => tree_class.model_name.human)
