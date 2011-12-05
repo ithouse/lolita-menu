@@ -1,5 +1,4 @@
 Rails.application.routes.draw do 
-  lolita_for :menus
 	
   resources :menu_items, :only => :none do
     collection do
@@ -12,4 +11,7 @@ Rails.application.routes.draw do
 			put :update_tree
 		end
 	end
+
+  lolita_for :menu_items
+  lolita_for :menus, :visible => false
 end

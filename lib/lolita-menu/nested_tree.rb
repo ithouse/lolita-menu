@@ -14,6 +14,14 @@ module Lolita
 					before_create :set_default_positions
 					after_create :put_in_place
 				end
+
+				base_class.after_lolita_loaded do
+					if self.lolita_nested_tree.scope_classes.any?
+						self.lolita.list.columns = self.lolita_nested_tree.scope_classes.first.lolita.list.columns
+					end
+					self.lolita.list.pagination_method = :paginate_nested_tree
+					self.lolita.list.builder = {:name => "/lolita/menu/nested_tree", :state => :display, :if =>{:state =>:display}}
+				end
 			end
 
 			def self.is_tree?(klass)
@@ -21,8 +29,19 @@ module Lolita
 			end
 
 			module ClassMethods
+
+				def paginate_nested_tree(page,per_page,options)
+					if scope_class = self.lolita_nested_tree.scope_classes.first
+						scope_class.page(page).per(per_page)
+					else
+						where(nil)
+					end
+				end
+
 				def create_root!
-					self.create!(with_tree_scope.merge(default_root_position))
+					new_branch = self.build_empty_branch(default_root_position)
+					new_branch.save!
+					new_branch
 				end
 
 				def find_or_create_root(attributes = {})
@@ -80,7 +99,7 @@ module Lolita
 
         def build_empty_branch(attributes)
           if self.lolita_nested_tree.build_method && self.respond_to?(self.lolita_nested_tree.build_method)
-            self.send(self.lolita_nested_tree.build_method, attributes)
+            self.send(self.lolita_nested_tree.build_method, attributes.merge(with_tree_scope))
           else
             self.new(attributes)
           end

@@ -6,4 +6,12 @@ en:
       "branch created": "New menu item created."
       "branch deleted": "Menu item deleted."
       add_new: "Add new"
-      save_menu: "Save menu"      
+      save_menu: "Save menu"     
+  active_record:
+    models:
+      menu_item:
+        one: Menu item
+        other: Menues
+      menu:
+        one: Menu
+        other: Menues

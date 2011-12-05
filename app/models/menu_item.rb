@@ -9,16 +9,22 @@ class MenuItem < ActiveRecord::Base
   validates :url, :format => {:with => /^(\/)|(http).*/}, :unless=>:root?
 
   before_save :normalize_url
-  before_validation :set_default_url, :if=>:new_record?
-
-	lolita_nested_tree :scope => :menu
+  
+	lolita_nested_tree :scope => :menu, :build_method => :build_new_item
 
 	lolita do
 		tab(:default) do
-			field :menu
+			field :name
 			field :url
 		end
 	end
+
+  class << self
+
+    def build_new_item(attributes)
+      self.new(attributes.merge(:url => "/", :name => I18n.t("lolita.menu_item.new")))
+    end
+  end
 
 	# class methods
 	
@@ -35,7 +41,6 @@ class MenuItem < ActiveRecord::Base
     active_item = self_and_descendants.detect{|item|
       item.url_match?(request,options[:fullpath])
     }
-    
     !!active_item
   end
 
@@ -60,10 +65,6 @@ class MenuItem < ActiveRecord::Base
   end
 
   private
-
-  def set_default_url
-    self.url||="/"
-  end
 
   def normalize_url
     self.url = self.url.to_s.strip
