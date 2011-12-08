@@ -116,6 +116,10 @@ module Lolita
 				def all_tree_item_ids
 					self.all.map(&:id)
 				end
+
+        def only_children
+          where("rgt-lft=1")
+        end
 			end
 
 			module InstanceMethods
@@ -169,7 +173,7 @@ module Lolita
 				end
 
 				def only_children
-					@only_children ||= self.class.where("rgt-lft=1").with_tree_scope(self).order("lft asc")
+					@only_children ||= self.class.with_tree_scope(self).order("lft asc")
 				end
 
 				def root
