@@ -18,7 +18,7 @@ class NestedTreesController < ApplicationController
 
 	def update
     authorize!(:update,tree_class)
-		if item = tree_class.find_by_id(params[:id])
+		if params[:attribute].present? && item = tree_class.find_by_id(params[:id]) 
       item.send(:"#{params[:attribute]}=",params[:value])
       item.save
       render :json=>{:status=>item.errors.any? ? "error" : "saved"}
