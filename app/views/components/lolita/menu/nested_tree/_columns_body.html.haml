@@ -4,7 +4,7 @@
       - columns.each do |column|
         %td
           = column.formatter.with(record.send(column.name.to_sym),record).to_s
-      = render_component columns,:last,:record=>record
+      = render_component "lolita/configuration/column", :last,:record=>record
     %tr{:id=>"branch_#{record.id}",:class=>"subrow", :style=>"display:none;"}
       %td{:colspan=>columns.size+2}
         = render_component "lolita/menu/nested_tree/branch_builder",:display, :scope => record
