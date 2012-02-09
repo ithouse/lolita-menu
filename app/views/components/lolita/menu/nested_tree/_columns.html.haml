@@ -1,2 +1,2 @@
-= render_component *columns.build("header")
-= render_component "lolita/menu/nested_tree", "columns_body", :columns=>columns,:page=>page
+= render_component *columns.build("header",:list => list)
+= render_component "lolita/menu/nested_tree", "columns_body", :columns=>columns,:page=>page, :list => list

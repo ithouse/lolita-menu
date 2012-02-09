@@ -11,8 +11,8 @@
   .list
     %table
       - if has_scopes
-        = render_component "lolita/menu/nested_tree",:columns,:page=>page,:columns=>list.columns
+        = render_component "lolita/menu/nested_tree",:columns,:page=>page,:columns=>list.columns, :list => list
       - else
-        = render_component "lolita/menu/nested_tree", :unscoped_body
+        = render_component "lolita/menu/nested_tree", :unscoped_body, :list => list
   - if has_scopes
     = render_component list, :paginator, :page => page
