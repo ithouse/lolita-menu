@@ -1,4 +1,4 @@
-class NestedTreesController < ApplicationController
+class NestedTreesController < Lolita::RestController
 	include Lolita::ControllerAdditions
 
   before_filter :authenticate_lolita_user!
