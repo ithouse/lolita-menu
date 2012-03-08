@@ -10,7 +10,7 @@ lv:
       "branch deleted": "%{name} dzēsts(-a)."
       notice: "%{name} veiksmīgi saglabāts(-a)."
       error: "%{name} netika saglabāts(-a). Mēģiniet vēlreiz."
-  active_record:
+  activerecord:
     models:
       menu_item:
         one: Izvēlnes ierakstu

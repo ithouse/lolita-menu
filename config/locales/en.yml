@@ -7,7 +7,7 @@ en:
       "branch deleted": "Menu item deleted."
       add_new: "Add new"
       save_menu: "Save menu"     
-  active_record:
+  activerecord:
     models:
       menu_item:
         one: Menu item
