@@ -1,4 +1,4 @@
 = form_for item, :url => nested_tree_path(:id => item.id, :tree_class => resource_class.to_s) do |f|
-  - tab_form(f) do 
+  - current_form(f) do 
     - resource_class.lolita.tabs.fields.each do |field|
       = render_component *field.build
