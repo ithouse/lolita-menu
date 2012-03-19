@@ -8,7 +8,7 @@ class NestedTreesController < Lolita::RestController
 	end
 
 	def create
-    authorize!(:create, tree_class)
+    authorization_proxy.authorize!(:create, tree_class)
 		item = tree_class.build_empty_branch(attributes.merge(scopes))
     item.save!
 		item.reload
@@ -17,7 +17,7 @@ class NestedTreesController < Lolita::RestController
 	end
 
 	def update
-    authorize!(:update,tree_class)
+    authorization_proxy.authorize!(:update,tree_class)
 		if params[:attribute].present? && item = tree_class.find_by_id(params[:id]) 
       item.send(:"#{params[:attribute]}=",params[:value])
       item.save
@@ -28,7 +28,7 @@ class NestedTreesController < Lolita::RestController
 	end
 
 	def update_tree
-    authorize!(:update,tree_class)
+    authorization_proxy.authorize!(:update,tree_class)
 		if tree_class.update_whole_tree(params[:items], scopes)
       notice I18n.t("lolita.nested_tree.notice", :name => tree_class.model_name.human)
     else
@@ -39,7 +39,7 @@ class NestedTreesController < Lolita::RestController
 	end
 
 	def destroy
-    authorize!(:destroy,tree_class)
+    authorization_proxy.authorize!(:destroy,tree_class)
 		item = tree_class.find_by_id(params[:id])
 		item.destroy
     notice I18n.t("lolita.nested_tree.branch deleted", :name => tree_class.model_name.human)

@@ -13,6 +13,18 @@ class MenuItem < ActiveRecord::Base
 	lolita_nested_tree :scope => :menu, :build_method => :build_new_item
 
 	lolita do
+    list do 
+      action :edit do 
+        title ::I18n.t("lolita.shared.edit")
+        url Proc.new{|view,record| view.send(:edit_lolita_resource_path, Lolita.mappings[:menu], :id => record.id)}
+      end
+
+      action :destroy do 
+        title ::I18n.t("lolita.shared.delete")
+        url Proc.new{|view,record| view.send(:lolita_resource_path,Lolita.mappings[:menu],:id => record.id)}
+        html :method => :delete, :confirm => ::I18n.t("lolita.list.confirm"), :remote => true
+      end
+    end
 		tab(:default) do
 			field :name
 			field :url

@@ -18,3 +18,9 @@ lv:
       menu:
         one: Izvēlni
         other: Izvēlnes
+    attributes:
+      menu: 
+        name: "Nosaukums"
+      menu_item:
+        name: "Nosaukums"
+        url: "Interneta adrese"
