@@ -1,7 +1,6 @@
 class MenuItem < ActiveRecord::Base
 	include Lolita::Configuration
 	include Lolita::Menu::NestedTree
-  set_table_name "lolita_menu_items"
   
   belongs_to :menu, :class_name => "Menu"
 
@@ -22,7 +21,7 @@ class MenuItem < ActiveRecord::Base
       action :destroy do 
         title ::I18n.t("lolita.shared.delete")
         url Proc.new{|view,record| view.send(:lolita_resource_path,Lolita.mappings[:menu],:id => record.id)}
-        html :method => :delete, :confirm => ::I18n.t("lolita.list.confirm"), :remote => true
+        html :method => :delete, :confirm => ::I18n.t("lolita.list.confirm")
       end
     end
 		tab(:default) do
@@ -33,21 +32,14 @@ class MenuItem < ActiveRecord::Base
 
   class << self
 
+    def table_name
+      "lolita_menu_items"
+    end
+
     def build_new_item(attributes)
       self.new(attributes.merge(:url => "/", :name => I18n.t("lolita.menu_item.new")))
     end
   end
-
-	# class methods
-	
-  #class << self
-   # def create_root!(menu)
-   #   new_item = self.create!({:menu_id => menu.id}.merge(default_root_position))
-   #   menu.items << new_item
-   # end
-  #end
-	
-  # instance methods
 
   def active?(request,options={})
     active_item = self_and_descendants.detect{|item|

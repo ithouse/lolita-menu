@@ -5,5 +5,8 @@
       = image_tag("lolita/menu/move.png",:style=>"cursor:move;")
     %span
       = image_tag("lolita/menu/delete.png", {:class => "delete-nested-tree-item"}.merge(lolita_menu_data_attributes_for_branch_delete(scope, item)))
+    - (item.lolita.list.actions.respond_to?(:each) ? item.lolita.list.actions : []).each do |action|
+      %span
+        = render_component action, :record => item
   %ol
     = render_component "lolita/menu/nested_tree/branch_builder", "subtree", :item => item, :scope => scope
