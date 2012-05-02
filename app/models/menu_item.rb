@@ -3,6 +3,7 @@ class MenuItem < ActiveRecord::Base
 	include Lolita::Menu::NestedTree
   
   belongs_to :menu, :class_name => "Menu"
+  attr_accessible :lft, :rgt, :depth, :parent_id, :menu_id, :url, :name
 
   validates :name,:presence => true
   validates :url, :format => {:with => /^(\/)|(http).*/}, :unless=>:root?
@@ -37,7 +38,7 @@ class MenuItem < ActiveRecord::Base
     end
 
     def build_new_item(attributes)
-      self.new(attributes.merge(:url => "/", :name => I18n.t("lolita.menu_item.new")))
+      self.new(attributes.merge(:url => "/", :name => ::I18n.t("lolita.menu_item.new")))
     end
   end
 
