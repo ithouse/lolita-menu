@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+  include Lolita::Configuration
 	include Lolita::Menu::NestedTree
 
 	belongs_to :shop

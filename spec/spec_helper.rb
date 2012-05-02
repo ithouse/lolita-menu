@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'bundler/setup'
+
 require File.expand_path("test_orm/rails/config/application")
 require "rspec/rails"
 
@@ -14,15 +17,5 @@ RSpec.configure do |config|
 		end
 	end
 
-  #require 'database_cleaner'
-
-  #config.before(:suite) do
-  #  DatabaseCleaner.strategy = :truncation
-  #  DatabaseCleaner.orm = "active_record"
-  #end
-
-  #config.before(:all) do
-  #  DatabaseCleaner.clean
-  #end
 end
 

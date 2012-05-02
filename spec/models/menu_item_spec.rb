@@ -41,7 +41,7 @@ describe MenuItem do
     let(:menu){Menu.create!(:name=>"new menu")}
 
     it "should append" do
-      root=MenuItem.create!
+      root=MenuItem.create!(:name => "root")
       item=MenuItem.create!(:name=>"child",:url=>"/")
       root.append(item)
       item.reload

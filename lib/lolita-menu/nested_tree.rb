@@ -14,15 +14,16 @@ module Lolita
 					before_create :set_default_positions
 					after_create :put_in_place
 				end
-
-				base_class.after_lolita_loaded do
-					if self.lolita_nested_tree.scope_classes.any?
-						parent_scope_columns = self.lolita_nested_tree.scope_classes.first.lolita.list.columns
-						#parent_scope_columns.actions = self.lolita.list.columns.actions
-						self.lolita.list.columns = parent_scope_columns
+				if base_class.respond_to?(:after_lolita_loaded)
+					base_class.after_lolita_loaded do
+						if self.lolita_nested_tree.scope_classes.any?
+							parent_scope_columns = self.lolita_nested_tree.scope_classes.first.lolita.list.columns
+							#parent_scope_columns.actions = self.lolita.list.columns.actions
+							self.lolita.list.columns = parent_scope_columns
+						end
+						self.lolita.list.pagination_method ||= :paginate_nested_tree
+						self.lolita.list.builder = {:name => "/lolita/menu/nested_tree", :state => :display, :if =>{:state =>:display}}
 					end
-					self.lolita.list.pagination_method ||= :paginate_nested_tree
-					self.lolita.list.builder = {:name => "/lolita/menu/nested_tree", :state => :display, :if =>{:state =>:display}}
 				end
 			end
 
