@@ -7,7 +7,7 @@ In your project Gemfile put
 And run
   bundle install
 Like with other Lolita gems call
-  rails g lolita_menu:install
+  rails g lolita:menu:install
 Since this gem comes with migrations
   rake db:migrate 
 === Using autocomplete
