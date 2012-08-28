@@ -21,7 +21,7 @@ module Lolita
 							parent_scope_actions = self.lolita_nested_tree.scope_classes.first.lolita.list.actions
 							#parent_scope_columns.actions = self.lolita.list.columns.actions
 							self.lolita.list.columns = parent_scope_columns
-							
+							self.lolita.list.instance_variable_set(:@temp_actions, parent_scope_actions)
 						end
 						self.lolita.list.pagination_method ||= :paginate_nested_tree
 						self.lolita.list.builder = {:name => "/lolita/menu/nested_tree", :state => :display, :if =>{:state =>:display}}
