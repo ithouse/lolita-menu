@@ -4,6 +4,7 @@ test_orm/rails/log/*.*
 Gemfile.lock
 coverage
 .project
+.rvmrc
 
 # rdoc generated
 rdoc

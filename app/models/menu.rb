@@ -9,9 +9,11 @@ class Menu < ActiveRecord::Base
   lolita do
     list do
       column :name
+      column :system_name
     end
     tab(:content) do
       field :name
+      field :system_name, :on => :create
     end
   end
 
