@@ -18,8 +18,10 @@ module Lolita
 					base_class.after_lolita_loaded do
 						if self.lolita_nested_tree.scope_classes.any?
 							parent_scope_columns = self.lolita_nested_tree.scope_classes.first.lolita.list.columns
+							parent_scope_actions = self.lolita_nested_tree.scope_classes.first.lolita.list.actions
 							#parent_scope_columns.actions = self.lolita.list.columns.actions
 							self.lolita.list.columns = parent_scope_columns
+							
 						end
 						self.lolita.list.pagination_method ||= :paginate_nested_tree
 						self.lolita.list.builder = {:name => "/lolita/menu/nested_tree", :state => :display, :if =>{:state =>:display}}
