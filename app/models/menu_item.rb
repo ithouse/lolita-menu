@@ -27,7 +27,9 @@ class MenuItem < ActiveRecord::Base
     end
 		tab(:default) do
 			field :name
-			field :url
+			field :url do 
+        builder :name => "/lolita/menu_item", :state => :display, :if => {:state => :display} 
+      end
 		end
 	end
 

@@ -1,10 +1,6 @@
-%span
-  %input{:type=>"text",:value=>item.name,:name=>"name",:"data-id"=>item.id,:"data-url"=>menu_item_path(item.id)}
-%span
-  %input{:"data-autocomplete" => autocomplete_menu_item_url_menu_items_path, :"data-delimiter" => " ",
-         :id => "menu_item_#{item.id}_url", :name => "url",
-         :class=>"url-input ui-autocomplete-input", :autocomplete=>"off", :role=>"textbox", :"aria-autocomplete"=>"list",
-         :"aria-haspopup"=>"true", :type => "text", :value => item.url,
-         :"data-id"=>item.id,:"data-url"=>menu_item_path(item.id),
-        }
-
+- rand_id = rand(10**10)
+- given_options = {:"data-autocomplete" => autocomplete_menu_item_url_menu_items_path(:tree_class => resource_class.to_s), |
+         :"data-delimiter" => " ", |
+         :class=>"url-input ui-autocomplete-input", :autocomplete=>"off", :role=>"textbox", :"aria-autocomplete"=>"list", |
+         :"aria-haspopup"=>"true" }
+= current_form.text_field field.name, given_options.merge(field.html_options)
