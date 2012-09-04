@@ -1,3 +1,7 @@
+=== Version 0.2.0
+* Changes
+  * added system_name field to Menu model
+  * added autocomplete to MenuItem url field
 === Version 0.1.6
 * Changes
   * new style generators and improved navigation
