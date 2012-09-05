@@ -14,7 +14,9 @@ module Lolita
             new_stream = true
           end
           @file.add(*args)
-          @file.finalize! if new_stream
+          if new_stream
+            finalize_file!
+          end
         end
 
         def create &block
@@ -22,8 +24,15 @@ module Lolita
           begin
             instance_eval(&block)
           ensure
-            @file.finalize! 
+            finalize_file!
           end
+        end
+
+        private
+
+        def finalize_file!
+          @file.finalize! 
+          @file = nil
         end
 
       end
