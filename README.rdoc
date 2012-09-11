@@ -9,7 +9,25 @@ And run
 Like with other Lolita gems call
   rails g lolita:menu:install
 Since this gem comes with migrations
-  rake db:migrate 
+  rake db:migrate
+
+=== Creating menu
+To create Menu it's a good practise to do in your `db/seeds.rb`
+
+  menu = Menu.find_or_initialize_by_system_name('main_menu')
+  if menu.new_record?
+    categories_menu.name = 'Main menu'
+    categories_menu.save!
+    [ 
+      ['News', '/news'],
+      ['Galleries', '/galleries'],
+      ['About', '/about']
+    ].each do |item|
+      menu.append MenuItem.create!(:name => item.first, :url => item.last)
+    end
+    puts "=> Main menu created"
+  end
+
 === Using autocomplete
 Before that you must follow Install instruction.
 To use autocomplete you need to add all possible url's in <b>config/lolita-menu-urls.rb</b>
