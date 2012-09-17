@@ -36,7 +36,7 @@ module Lolita
           @file.rewind
           label ||= url
           !!@file.detect do |line|
-            line_match_url_and_label(line, url, label)
+            line_match_url_and_label?(line, url, label)
           end
         end
 
@@ -52,7 +52,7 @@ module Lolita
 
         private
 
-        def link_match?(line, url, label)
+        def line_match_url_and_label?(line, url, label)
           line = line.gsub($/, "")
           line == "#{url} #{label}"
         end
