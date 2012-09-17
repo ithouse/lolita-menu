@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "lolita-menu"
-  s.version = "0.2.2"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ITHouse", "Arturs Meisters"]
-  s.date = "2012-09-13"
+  s.date = "2012-09-17"
   s.description = "Manage public menus for each project inside Lolita."
   s.email = "support@ithouse.lv"
   s.extra_rdoc_files = [
@@ -57,6 +57,7 @@ Gem::Specification.new do |s|
     "lib/lolita-menu/autocomplete/collector.rb",
     "lib/lolita-menu/autocomplete/file_builder.rb",
     "lib/lolita-menu/autocomplete/link_set.rb",
+    "lib/lolita-menu/configuration.rb",
     "lib/lolita-menu/module.rb",
     "lib/lolita-menu/nested_tree.rb",
     "lib/lolita-menu/nested_tree/branch_builder.rb",
