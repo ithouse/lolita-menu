@@ -1,3 +1,7 @@
+=== Version 0.3.0
+* Enhancements
+  * configuration is now accessible through Lolita.setup block
+  * autocomplete updated to remove links and accept file location through configuration
 === Version 0.2.0
 * Changes
   * added system_name field to Menu model

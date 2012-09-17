@@ -5,11 +5,11 @@ module Lolita
 
         class << self
           def input_file
-            File.join(Rails.root,"config","lolita-menu-urls.rb")
+            Lolita.menu.autocomplete_input_file
           end
 
           def output_file
-            File.join(Rails.root,"public","lolita-menu-url.txt")
+            Lolita.menu.autocomplete_output_file
           end
         end
 
@@ -23,8 +23,38 @@ module Lolita
           @file.puts "#{url} #{label || url}"
         end
 
+        def reject_lines_with url, label = nil
+          lines_arr = @file.readlines
+          label ||= url
+          lines_arr.reject do |line|
+            line_match_url_and_label?(line, url, label)
+          end
+        end
+
+        def exist?(url, label = nil)
+          old_lineno = @file.lineno
+          @file.rewind
+          label ||= url
+          !!@file.detect do |line|
+            line_match_url_and_label(line, url, label)
+          end
+        end
+
+        def write_lines(*lines)
+          lines.each do |line|
+            @file.puts(line)
+          end
+        end
+
         def finalize!
           @file.close
+        end
+
+        private
+
+        def link_match?(line, url, label)
+          line = line.gsub($/, "")
+          line == "#{url} #{label}"
         end
       end
 

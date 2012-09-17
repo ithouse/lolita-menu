@@ -5,6 +5,7 @@ require 'lolita'
 
 module Lolita
   module Menu
+    autoload :Configuration, "lolita-menu/configuration"
     module Autocomplete
       autoload :LinkSet, "lolita-menu/autocomplete/link_set"
       autoload :FileBuilder, "lolita-menu/autocomplete/file_builder"
@@ -28,6 +29,14 @@ module Lolita
     end).new
   end
 end
+
+module LolitaMenuConfiguration
+  def menu
+    @menu ||= Lolita::Menu::Configuration.new
+  end
+end
+
+Lolita.configuration.extend(LolitaMenuConfiguration)
 
 
 require 'lolita-menu/module'
