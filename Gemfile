@@ -1,11 +1,6 @@
 source "http://rubygems.org"
 
-
-if File.exist?(File.expand_path('../lolita'))
-  gem 'lolita', :path=>File.expand_path('../../lolita',__FILE__)
-else
-  gem 'lolita','~>3.2.0.rc.9'
-end
+gem 'lolita','~>3.2.0.rc.14'
 
 group :development, :test do
   gem "rails", "~>3.2.0"
