@@ -15,7 +15,8 @@ module Lolita
               item = line.to_s.split(/\s/)
               first_item = item.shift
               item = [first_item, item.join(" ")]
-              if item.first.match(/#{@term}/) || item.last.match(/#{@term}/)
+              term_regexp = Regexp.new(@temp.gsub("\\",""))
+              if item.first.match(term_regexp) || item.last.match(term_regexp)
                 @links << item
               end
             }
