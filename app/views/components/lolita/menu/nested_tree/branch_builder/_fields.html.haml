@@ -1,4 +1,6 @@
 = form_for item, :url => nested_tree_path(:id => item.id, :tree_class => resource_class.to_s) do |f|
   - current_form(f) do 
     - resource_class.lolita.tabs.fields.each do |field|
-      = render_component *field.build
+      - field.dbi.switch_record_state(item, :read)
+      - if field.match_state_of?(item) 
+        = render_component *field.build
