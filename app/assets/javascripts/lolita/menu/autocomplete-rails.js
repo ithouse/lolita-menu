@@ -81,7 +81,6 @@ $(document).ready(function(){
           terms.push( ui.item.value );
           // add placeholder to get the comma-and-space at the end
           if (e.delimiter != null) {
-            terms.push( "" );
             this.value = terms.join( e.delimiter );
           } else {
             this.value = terms.join("");
