@@ -71,7 +71,6 @@ describe Menu do
     end
 
     it "should add new item to menu" do
-			debugger
       item=MenuItem.create!(:name=>"item",:url=>"/")
       menu.append(item)
       menu.items.should have(2).items

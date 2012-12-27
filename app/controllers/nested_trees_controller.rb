@@ -79,7 +79,7 @@ class NestedTreesController < Lolita::RestController
 
 	def attributes
 		@attributes ||= tree_class.lolita.tabs.first.fields.inject({}) do |result, field|
-			result[field.name.to_sym] = params[field.name.to_sym]
+			result[field.name.to_sym] = params[field.name.to_sym] if params[field.name.to_sym]
 			result
 		end
 	end

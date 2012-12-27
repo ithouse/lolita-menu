@@ -1,6 +1,6 @@
 # rcov generated
-test_orm/log/*.*
-test_orm/rails/log/*.*
+test_orm/log/*.log
+test_orm/rails/log/*.log
 Gemfile.lock
 coverage
 .project
