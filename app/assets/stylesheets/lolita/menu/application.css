@@ -1,6 +1,12 @@
+button.add_new_nested_tree_item {
+  margin-top: 10px;
+}
 ol.nested-tree-items-tree li{
   list-style:none;
   width:390px;
+}
+ol.nested-tree-items-tree{
+  margin-bottom: 10px;
 }
 div.nested-tree-content{
   width:500px;
@@ -10,6 +16,21 @@ div.nested-tree-content{
   float: left;
   padding: 0;
   margin-right: 10px;
+}
+#main div.nested-tree-content form input {
+border: 1px solid #cdcdcd;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+padding: 3px 10px;
+color: #494949;
+}
+#main div.nested-tree-content span img {
+  position: relative;
+  top: 4px;
 }
 li.placeholder{
   background-color:white;
