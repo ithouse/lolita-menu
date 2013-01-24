@@ -11,7 +11,7 @@ $(document).ready(function(){
         success:function(){
           tree.data("old_positions",tree.nestedSortable('serialize'))
         }
-      })  
+      })
     }
   }
 
@@ -41,7 +41,7 @@ $(document).ready(function(){
     var that=this
     $(".subrow").hide(0)
     $("#branch_"+$(this).attr("data-id")).show(0);
-    
+
     //event.preventDefault();
   })
 
@@ -57,7 +57,7 @@ $(document).ready(function(){
     })
   })
 
-  $(".delete-nested-tree-item").live("click",function(){
+  $(document).on("click",".delete-nested-tree-item",function(){
     var self = this;
     $.ajax({
       url:$(this).attr("data-url"),
@@ -70,11 +70,11 @@ $(document).ready(function(){
     })
   })
 
-  $(".nested-tree-content input").live("focus",function(){
+  $(document).on("focus",".nested-tree-content input",function(){
     $(this).data("value",$(this).val())
   })
 
-  $(".nested-tree-content input").live("blur",function(){
+  $(document).on("blur",".nested-tree-content input",function(){
     var input=$(this);
     if(input.data("value")!=input.val()){
       var match = input.attr("name").match(/\[(\w+)\]$/);
