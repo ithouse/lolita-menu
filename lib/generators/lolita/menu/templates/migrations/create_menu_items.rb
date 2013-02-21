@@ -22,6 +22,6 @@ class CreateLolitaMenuItems < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :menu_items
+    drop_table :lolita_menu_items
   end
 end
