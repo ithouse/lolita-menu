@@ -1,6 +1,6 @@
 class MenuItem < ActiveRecord::Base
-	include Lolita::Configuration
-	include Lolita::Menu::NestedTree
+  include Lolita::Configuration
+  include Lolita::Menu::NestedTree
   
   belongs_to :menu, :class_name => "Menu"
   attr_accessible :lft, :rgt, :depth, :parent_id, :menu_id, :url, :name
@@ -10,9 +10,9 @@ class MenuItem < ActiveRecord::Base
 
   before_save :normalize_url
   
-	lolita_nested_tree :scope => :menu, :build_method => :build_new_item
+  lolita_nested_tree :scope => :menu, :build_method => :build_new_item
 
-	lolita do
+  lolita do
     list do 
       action :edit do 
         title ::I18n.t("lolita.shared.edit")
@@ -25,13 +25,13 @@ class MenuItem < ActiveRecord::Base
         html :method => :delete, :confirm => ::I18n.t("lolita.list.confirm")
       end
     end
-		tab(:default) do
-			field :name
-			field :url do 
+    tab(:default) do
+      field :name
+      field :url do 
         builder :name => "/lolita/menu_item", :state => :display, :if => {:state => :display} 
       end
-		end
-	end
+    end
+  end
 
   class << self
 
@@ -51,9 +51,9 @@ class MenuItem < ActiveRecord::Base
     !!active_item
   end
 
-	def visible?
-		self.is_visible
-	end
+  def visible?
+    self.is_visible
+  end
 
   def url_match?(request,fullpath=false)
     if self.url.strip.match(/^http/)
