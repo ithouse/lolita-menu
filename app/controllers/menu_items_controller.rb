@@ -3,6 +3,10 @@ class MenuItemsController < NestedTreesController
 
   before_filter :authenticate_lolita_user!
   
+  def index
+    super
+  end
+  
   def autocomplete_menu_item_url
     authorization_proxy.authorize!(:read, Menu)
     urls = Lolita::Menu::Autocomplete::Collector.new(params[:term])

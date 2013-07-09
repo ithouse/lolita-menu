@@ -1,6 +1,7 @@
 class MenuItem < ActiveRecord::Base
   include Lolita::Configuration
   include Lolita::Menu::NestedTree
+  self.table_name = 'lolita_menu_items'
   
   belongs_to :menu, :class_name => "Menu"
   attr_accessible :lft, :rgt, :depth, :parent_id, :menu_id, :url, :name
@@ -34,11 +35,6 @@ class MenuItem < ActiveRecord::Base
   end
 
   class << self
-
-    def table_name
-      "lolita_menu_items"
-    end
-
     def build_new_item(attributes)
       self.new(attributes.merge(:url => "/", :name => ::I18n.t("lolita.menu_item.new")))
     end

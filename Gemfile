@@ -1,13 +1,10 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem 'lolita','~>3.2.0.rc.14'
+gemspec
 
-group :development, :test do
-  gem "rails", "~>3.2.0"
-  gem 'rspec', '~>2.9.0'
-  gem "sqlite3"
-  gem 'rspec-rails', '~>2.9.0'
-  gem 'haml-rails'
-  gem "jeweler", "~> 1.6.0"
-	gem "database_cleaner", "~>0.6.7"
+group :test do
+  gem 'rails', '~> 3.2.12'
+  gem 'sqlite3', '~> 1.3.7'
+  gem 'rspec-rails', '~> 2.14'
+	gem 'database_cleaner', '~> 1.0.1'
 end

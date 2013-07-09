@@ -11,27 +11,27 @@ describe MenuItem do
     let(:menu){Menu.create!(:name=>"new menu")}
 
     let(:request){
-      mock_obj = mock(Object)
-      mock_obj.stub!(:params).and_return({})
+      mock_obj = double
+      mock_obj.stub(:params).and_return({})
       mock_obj
     }
 
     it "should recognize full paths" do
       item = menu.append(MenuItem.create!(:name => "Name", :url => "http://google.lv"))
-      request.stub!(:url).and_return("http://google.lv")
+      request.stub(:url).and_return("http://google.lv")
       item.active?(request).should be_true
     end
 
     it "should recognize relative paths" do
       item = menu.append(MenuItem.create!(:name => "Name", :url => "/posts"))
-      request.stub!(:path).and_return("/posts?page=1")
+      request.stub(:path).and_return("/posts?page=1")
       item.active?(request).should be_true
     end
 
     it "should recognize relative paths with arguments" do
       item = menu.append(MenuItem.create!(:name => "Name", :url => "/:whoes/posts"))
-      request.stub!(:path).and_return("/my/posts?page=1")
-      request.stub!(:params).and_return({:whoes => "my"})
+      request.stub(:path).and_return("/my/posts?page=1")
+      request.stub(:params).and_return({:whoes => "my"})
       item.active?(request).should be_true
     end
   end

@@ -2,7 +2,6 @@
   = javascript_include_tag "lolita/menu/application.js"
 - content_for :style do
   = stylesheet_link_tag "lolita/menu/application.css"
-
 - has_scopes = list.dbi.klass.lolita_nested_tree.scope_keys.any?
 .box
   = render_component list, :title

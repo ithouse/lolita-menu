@@ -1,7 +1,6 @@
 class Menu < ActiveRecord::Base
-  
+  self.table_name = 'lolita_menus'
   has_many :items, :class_name => "MenuItem", :dependent => :destroy
-
   validates :name, :presence => true
 
   include Lolita::Configuration
@@ -27,9 +26,4 @@ class Menu < ActiveRecord::Base
     end
   end
 
-  class << self
-    def table_name
-      "lolita_menus"
-    end
-  end
 end
