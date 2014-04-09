@@ -4,10 +4,9 @@ class MenuItem < ActiveRecord::Base
   self.table_name = 'lolita_menu_items'
   
   belongs_to :menu, :class_name => "Menu"
-  attr_accessible :lft, :rgt, :depth, :parent_id, :menu_id, :url, :name
 
   validates :name,:presence => true
-  validates :url, :format => {:with => /^(\/)|(http).*/}, :unless=>:root?
+  validates :url, :format => { :with => /\A(\/)|(http).*/ }, :unless=>:root?
 
   before_save :normalize_url
   
