@@ -111,7 +111,7 @@ module Lolita
         end
 
         def update_item(item)
-          self.where(:id => item.value_for(:item_id)).update_all(item.attribute_value_pairs_hash)         
+          self.where(:id => item.value_for(:item_id)).update_all(item.attribute_value_pairs_hash)
         end
 
         def remove_items(ids)
@@ -199,7 +199,7 @@ module Lolita
           self.class.lolita_nested_tree.scope_keys.inject({}) do |result, key|
             result[key] = self.send(key)
             result
-          end         
+          end
         end
 
         private
@@ -213,7 +213,7 @@ module Lolita
         end
 
         def am_i_new_root?
-          #scope_ids.all? && scope_records.all? && 
+          #scope_ids.all? && scope_records.all? &&
           !(self.class.with_tree_scope(self) do
             root
           end)
@@ -230,11 +230,11 @@ module Lolita
         #   scope.constantize.exists?(self.send(scope.foreign_key.to_sym))
         # end
         #end
-        
+
         def put_in_place
           if place==:append
             item = self
-            self.class.with_tree_scope(self) do 
+            self.class.with_tree_scope(self) do
               root.append(item)
             end
           end
@@ -256,7 +256,7 @@ module Lolita
 
         def recalculate_positions_after(action)
           if action==:append
-            self.class.update_all("rgt=#{self.rgt+2}","id=#{self.id}")
+            self.class.where(:id => self.id).update_all(:rgt=> self.rgt+2)
           end
         end
 
@@ -269,7 +269,7 @@ module Lolita
           }
         end
       end
-    
+
     end
   end
 end
