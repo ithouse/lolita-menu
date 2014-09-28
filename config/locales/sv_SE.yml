@@ -1,0 +1,24 @@
+en:
+  lolita:
+    menu:
+      notice: "Menu saved."
+      error: "Couldn't save a menu. Try again."
+      "branch created": "New menu item created."
+      "branch deleted": "Menu item deleted."
+      add_new: "Add new"
+      save_menu: "Save menu"
+    nested_tree:
+      "branch created": "Barnch %{name} created."
+      "branch deleted": "%{name} deleted."
+      notice: "%{name} successfully saved."
+      error: "%{name} failed to save. Try again."
+    menu_item:
+      new: "Ny punkt"
+  activerecord:
+    models:
+      menu_item:
+        one: Menu item
+        other: Menus
+      menu:
+        one: Menu
+        other: Menus
