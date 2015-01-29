@@ -3,7 +3,7 @@ class MenuItem < ActiveRecord::Base
   include Lolita::Menu::NestedTree
   self.table_name = 'lolita_menu_items'
   
-  belongs_to :menu, :class_name => "Menu"
+  belongs_to :menu, :class_name => "Menu", touch: true
 
   validates :name,:presence => true
   validates :url, :format => { :with => /\A(\/)|(http).*/ }, :unless=>:root?
