@@ -257,7 +257,7 @@ module Lolita
 
         def recalculate_positions_after(action)
           if action==:append
-            self.class.update_all("rgt=#{self.rgt+2} AND id=#{self.id}")
+            self.class.where(id: self.id).update_all("rgt = #{self.rgt+2}")
           end
         end
 
