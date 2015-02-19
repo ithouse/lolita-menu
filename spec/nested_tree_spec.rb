@@ -15,7 +15,7 @@ describe "Nested tree" do
 		let(:root) { Category.find_or_create_root }
 		
 		it "should be root" do
-			root.root?.should be_true
+			root.root?.should be_truthy
 		end
 
 		it "should find root" do
@@ -38,11 +38,11 @@ describe "Nested tree" do
 	end
 
 	it "should change behavior when module is included" do
-		Btree.respond_to?(:create_root!).should be_false
-		btree.respond_to?(:root?).should be_false
+		Btree.respond_to?(:create_root!).should be_falsey
+		btree.respond_to?(:root?).should be_falsey
 		Btree.send(:include, Lolita::Menu::NestedTree)
-		Btree.respond_to?(:create_root!).should be_true
-		btree.respond_to?(:root?).should be_true
+		Btree.respond_to?(:create_root!).should be_truthy
+		btree.respond_to?(:root?).should be_truthy
 	end
 
 	describe "configuration" do
@@ -86,8 +86,8 @@ describe "Nested tree" do
 		it "should notify scope classes" do
 			add_associations([:shop, :category])
 			complex.scope_classes.each do |klass|
-				klass.respond_to?(:sees?, complex.klass).should be_true
-				klass.new.respond_to?(:sees?, complex.klass).should be_true
+				klass.respond_to?(:sees?, complex.klass).should be_truthy
+				klass.new.respond_to?(:sees?, complex.klass).should be_truthy
 			end
 		end
 	end
@@ -99,11 +99,11 @@ describe "Nested tree" do
 		end
 
 		it "should return criteria based on record" do
-			MenuItem.with_tree_scope(@item_1).should have(1).item
+			MenuItem.with_tree_scope(@item_1).count.should eq(1)
 		end
 
 		it "should return criteria based on hash" do
-			MenuItem.with_tree_scope(:menu_id => 2).should have(1).item
+			MenuItem.with_tree_scope(:menu_id => 2).count.should eq(1)
 		end
 
 		it "should accept block" do

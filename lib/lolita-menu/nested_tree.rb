@@ -193,6 +193,7 @@ module Lolita
           raise ArgumentError, "can't append itself" if self == item
           append_item(item)
           recalculate_positions_after(:append)
+
         end
 
         def to_scope_hash
@@ -256,7 +257,7 @@ module Lolita
 
         def recalculate_positions_after(action)
           if action==:append
-            self.class.update_all("rgt=#{self.rgt+2}","id=#{self.id}")
+            self.class.update_all("rgt=#{self.rgt+2} AND id=#{self.id}")
           end
         end
 

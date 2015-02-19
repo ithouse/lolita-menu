@@ -19,20 +19,20 @@ describe MenuItem do
     it "should recognize full paths" do
       item = menu.append(MenuItem.create!(:name => "Name", :url => "http://google.lv"))
       request.stub(:url).and_return("http://google.lv")
-      item.active?(request).should be_true
+      item.active?(request).should be_truthy
     end
 
     it "should recognize relative paths" do
       item = menu.append(MenuItem.create!(:name => "Name", :url => "/posts"))
       request.stub(:path).and_return("/posts?page=1")
-      item.active?(request).should be_true
+      item.active?(request).should be_truthy
     end
 
     it "should recognize relative paths with arguments" do
       item = menu.append(MenuItem.create!(:name => "Name", :url => "/:whoes/posts"))
       request.stub(:path).and_return("/my/posts?page=1")
       request.stub(:params).and_return({:whoes => "my"})
-      item.active?(request).should be_true
+      item.active?(request).should be_truthy
     end
   end
 
@@ -57,7 +57,7 @@ describe MenuItem do
 
     it "should find children" do
       menu.append(item)
-      menu.root(MenuItem).children.should have(1).item
+      menu.root(MenuItem).children.count.should eq(1)
       menu.root(MenuItem).children.first == item
     end
 

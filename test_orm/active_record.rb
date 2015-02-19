@@ -1,5 +1,7 @@
 require 'active_record'
 require 'logger'
+require 'yaml'
+
 test_orm_dir = File.dirname(__FILE__)
 dbconf = YAML::load(File.open(File.join(test_orm_dir, 'rails', 'config', 'database.yml')))
 ActiveRecord::Base.establish_connection(dbconf["development"])

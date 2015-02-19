@@ -9,7 +9,7 @@ describe "BranchBuilder" do
 
 	it "should detect if item is root" do
 		builder = builder_class.new(Object.new, {:item_id => "root"})
-		builder.root?.should be_true
+		builder.root?.should be_truthy
 	end
 
 	it "should return value for attribute" do

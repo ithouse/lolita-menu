@@ -8,7 +8,7 @@ class CreateCategories < ActiveRecord::Migration
       t.integer :depth
       t.integer :parent_id
       t.boolean :is_visible
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :categories, [:lft,:rgt,:parent_id]

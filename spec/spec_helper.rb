@@ -10,6 +10,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.mock_with :rspec
+  config.infer_spec_type_from_file_location!
 	config.use_transactional_fixtures = true
 	config.before(:each) do
 		[MenuItem, Menu, Category, Shop, Btree].each do |klass|

@@ -43,7 +43,7 @@ describe "TreeBuilder" do
 		MenuItem.count.should == 3
 		builder = builder_class.new(MenuItem, items)
 		builder.update_items
-		MenuItem.all.should have(2).items
+		expect(MenuItem.all.count).to eq 2
 	end
 
 end

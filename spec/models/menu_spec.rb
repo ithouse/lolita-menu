@@ -46,9 +46,9 @@ describe Menu do
       
       MenuItem.update_whole_tree(new_positions, {:menu_id => menu.id})
 
-      menu.children(MenuItem).should have(1).item
-      menu.children(MenuItem).first.children.should have(1).item
-      menu.children(MenuItem).first.children.first.children.should have(1).item
+      menu.children(MenuItem).count.should eq(1)
+      menu.children(MenuItem).first.children.count.should eq(1)
+      menu.children(MenuItem).first.children.first.children.count.should eq(1)
     end
   end
 
@@ -73,7 +73,7 @@ describe Menu do
     it "should add new item to menu" do
       item=MenuItem.create!(:name=>"item",:url=>"/")
       menu.append(item)
-      menu.items.should have(2).items
+      menu.items.count.should eq(2)
     end
  end
 end

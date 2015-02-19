@@ -9,11 +9,10 @@ class CreateLolitaMenuItems < ActiveRecord::Migration
       t.integer :depth
       t.integer :parent_id
       t.boolean :is_visible
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :lolita_menu_items, :menu_id
-    add_index :lolita_menu_items, [:lft,:rgt,:menu_id,:parent_id]
     add_index :lolita_menu_items, :lft # for sorting
     add_index :lolita_menu_items, :rgt
     add_index :lolita_menu_items, :depth

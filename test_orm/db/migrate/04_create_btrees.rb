@@ -6,7 +6,7 @@ class CreateBtrees < ActiveRecord::Migration
       t.integer :rgt
       t.integer :depth
       t.integer :parent_id
-      t.timestamps
+      t.timestamps null: false
     end
   end
 
