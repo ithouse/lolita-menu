@@ -1,7 +1,7 @@
 # encoding: utf-8
 class MenuItemsController < NestedTreesController
 
-  before_filter :authenticate_lolita_user!
+  before_action :authenticate_lolita_user!
   
   def index
     super
