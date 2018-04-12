@@ -1,7 +1,7 @@
 class NestedTreesController < Lolita::RestController
   include Lolita::ControllerAdditions
 
-  before_filter :authenticate_lolita_user!
+  before_action :authenticate_lolita_user!
 
   def index
     super
