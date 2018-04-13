@@ -9,8 +9,14 @@ module Lolita
           @klass  = klass
           @scope_attributes = scope_attributes
           @root = @klass.find_or_create_root(@scope_attributes)
-          @items = items.is_a?(Hash) ? items.values : items
-          @items.map! do |item| 
+          @items = if items.is_a?(Hash)
+                     items.values
+                   elsif items.is_a?(ActionController::Parameters)
+                     items.permit!.to_hash.values
+                   else
+                     items
+                   end
+          @items.map! do |item|
             Lolita::Menu::NestedTree::BranchBuilder.new(@root, item)
           end
         end

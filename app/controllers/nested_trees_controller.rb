@@ -35,7 +35,7 @@ class NestedTreesController < Lolita::RestController
       error I18n.t("lolita.nested_tree.error", :name => tree_class.model_name.human)
     end
 
-    render :nothing=>true
+    render :body=>nil
   end
 
   def destroy
