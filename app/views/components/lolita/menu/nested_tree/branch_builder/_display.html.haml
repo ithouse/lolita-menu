@@ -1,5 +1,7 @@
 %button{{:class => "add_new_nested_tree_item"}.merge(lolita_menu_data_attributes_for_branch(scope))}
   = t("lolita.menu.add_new")
+%button{:class => "save_nested_tree"}
+  = t("lolita.menu.save_tree")
 %ol{{:class=>"nested-tree-items-tree"}.merge(lolita_menu_data_attributes_for_tree(scope))}
   - (scope && scope.children(resource_class) || resource_class.find_or_create_root.children).each do |item|
     = render_component "lolita/menu/nested_tree/branch_builder", :row, :item => item, :scope => scope

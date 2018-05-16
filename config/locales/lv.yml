@@ -3,6 +3,7 @@ lv:
     menu:
       add_new: "Pievienot jaunu"
       save_menu: "Saglabāt izvēlni"
+      save_tree: "Saglabāt izvēlnes koku"
     menu_item:
       new: "Jauna sadaļa"
     nested_tree:

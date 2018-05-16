@@ -1,8 +1,8 @@
 $(document).ready(function(){
-  function save_menu_tree(tree){
+  function save_menu_tree(tree, force){
     var new_positions = tree.nestedSortable('toArray');
 
-    if(tree.data("old_positions")!=tree.nestedSortable('serialize')){
+    if(force || tree.data("old_positions")!=tree.nestedSortable('serialize')){
       $.ajax({
         url:tree.attr("data-url"),
         type:"put",
@@ -78,7 +78,6 @@ $(document).ready(function(){
     var input=$(this);
     if(input.data("value")!=input.val()){
       var match = input.attr("name").match(/\[(\w+)\]$/);
-      input.data("value",input.val())
       $.ajax({
         url: input.closest("form").attr("action"),
         type:"put",
@@ -86,11 +85,20 @@ $(document).ready(function(){
         dataType:"json",
         data:{attribute: match[1], value: input.val()},
         success:function(data){
-          var color=(data.status=="error" ? "#ff5656" : "#aaff56");
+          var color = "#aaff56";
+          if (data.status == "error") {
+            color = "#ff5656";
+          } else {
+            input.data("value", input.val());
+          }
           $(this).css("backgroundColor",color);
           $(this).animate({ backgroundColor: "white" }, 1000);
         }
       })
     }
   })
+
+  $(document).on('click', '.save_nested_tree', function(){
+    save_menu_tree($("ol.nested-tree-items-tree"), true);
+  });
 })

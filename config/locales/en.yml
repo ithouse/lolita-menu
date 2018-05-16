@@ -7,6 +7,7 @@ en:
       "branch deleted": "Menu item deleted."
       add_new: "Add new"
       save_menu: "Save menu"
+      save_tree: "Save tree"
     nested_tree:
       "branch created": "Barnch %{name} created."
       "branch deleted": "%{name} deleted."

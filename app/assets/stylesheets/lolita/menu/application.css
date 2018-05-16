@@ -1,5 +1,10 @@
 button.add_new_nested_tree_item {
   margin-top: 10px;
+  background-color: #dddddd;
+}
+button.save_nested_tree {
+  margin-top: 10px;
+  background-color: #dddddd;
 }
 ol.nested-tree-items-tree li{
   list-style:none;
